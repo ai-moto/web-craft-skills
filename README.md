@@ -136,6 +136,8 @@ This repository includes a GitHub Pages workflow at [`.github/workflows/pages.ym
 - Complete enough to cover website and app launch readiness end to end.
 - Focused enough that each skill has a recognizable job.
 
-## License
+## Usage Rights
 
-MIT
+Copyright © 2026 Ahmad Akkawi. All rights reserved.
+
+This repository is public so people can read the description, learn from the skill structure, and install the skills for their own Codex setup. No open-source license is granted. Reuse, redistribution, modified versions, commercial packaging, or publishing this skill pack elsewhere requires written permission from the owner.
