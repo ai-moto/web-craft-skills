@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Security Review"
+  short_description: "Review websites for security risks"
+  default_prompt: "Use $web-security-review to audit this website for practical security issues."

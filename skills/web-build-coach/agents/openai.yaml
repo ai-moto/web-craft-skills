@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Build Coach"
+  short_description: "Teach while building accurate websites"
+  default_prompt: "Use $web-build-coach to build a small website and explain the important decisions."

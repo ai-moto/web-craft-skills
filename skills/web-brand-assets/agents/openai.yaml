@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Brand Assets"
+  short_description: "Create logos icons and favicon sets"
+  default_prompt: "Use $web-brand-assets to create a clean logo, icon set, and favicon plan."

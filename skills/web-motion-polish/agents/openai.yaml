@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Motion Polish"
+  short_description: "Add useful accessible UI motion"
+  default_prompt: "Use $web-motion-polish to add tasteful, accessible motion to this interface."

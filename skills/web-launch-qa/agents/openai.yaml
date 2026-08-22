@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Launch QA"
+  short_description: "Verify web launch readiness"
+  default_prompt: "Use $web-launch-qa to verify this website before launch."

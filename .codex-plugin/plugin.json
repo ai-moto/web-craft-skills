@@ -1,0 +1,36 @@
+{
+  "name": "web-craft-skills",
+  "version": "0.1.0",
+  "description": "A focused Codex skill pack for building, polishing, reviewing, and teaching high-quality websites.",
+  "author": {
+    "name": "Ahmad Akkawi"
+  },
+  "license": "MIT",
+  "keywords": [
+    "web",
+    "frontend",
+    "design",
+    "security",
+    "qa",
+    "education"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Web Craft Skills",
+    "shortDescription": "Build better websites with focused Codex skills.",
+    "longDescription": "Web Craft Skills is a general-purpose Codex plugin that bundles focused skills for educational web builds, interface design, motion polish, brand assets, security review, and launch QA. It is intentionally product-neutral and does not include private project details.",
+    "developerName": "Ahmad Akkawi",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Code",
+      "Review",
+      "Design"
+    ],
+    "defaultPrompt": [
+      "Use $web-build-coach to build and explain a webpage.",
+      "Use $web-security-review to audit this site.",
+      "Use $web-launch-qa to verify launch readiness."
+    ],
+    "brandColor": "#2563EB"
+  }
+}

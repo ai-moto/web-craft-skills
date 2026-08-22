@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Design Director"
+  short_description: "Shape polished responsive web UI"
+  default_prompt: "Use $web-design-director to design a polished responsive page for my idea."

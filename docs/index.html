@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Web Craft Skills</title>
+    <meta name="description" content="Focused Codex skills for building better websites: design, implementation coaching, motion, brand assets, security review, and launch QA.">
+    <meta property="og:title" content="Web Craft Skills">
+    <meta property="og:description" content="Focused Codex skills for building better websites.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai-moto.github.io/web-craft-skills/">
+    <meta name="twitter:card" content="summary">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #ffffff;
+        --ink: #081735;
+        --muted: #50617f;
+        --line: #d9e2f1;
+        --panel: #f7faff;
+        --panel-strong: #eef5ff;
+        --blue: #155dfc;
+        --blue-dark: #0f43b8;
+        --green: #16a34a;
+        --code: #07152e;
+        --shadow: 0 18px 50px rgba(8, 23, 53, 0.08);
+        --radius: 8px;
+        --max: 1160px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.55;
+        letter-spacing: 0;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      p,
+      h1,
+      h2,
+      h3,
+      code {
+        overflow-wrap: break-word;
+      }
+
+      .hero-inner > *,
+      .split-inner > *,
+      .skills-grid > *,
+      .usage-grid > * {
+        min-width: 0;
+      }
+
+      .skip-link {
+        position: absolute;
+        left: 1rem;
+        top: -4rem;
+        z-index: 20;
+        padding: 0.65rem 0.85rem;
+        background: var(--ink);
+        color: white;
+        border-radius: 6px;
+      }
+
+      .skip-link:focus {
+        top: 1rem;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.92);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(14px);
+      }
+
+      .nav {
+        width: min(100%, var(--max));
+        min-height: 64px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        font-size: 1.08rem;
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        color: var(--blue);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: white;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: #1b2a47;
+        font-size: 0.94rem;
+      }
+
+      .nav-links a {
+        padding: 20px 14px;
+        border-bottom: 2px solid transparent;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        color: var(--blue);
+        border-bottom-color: var(--blue);
+        outline: none;
+      }
+
+      .github-icon {
+        width: 22px;
+        height: 22px;
+        margin-left: 8px;
+      }
+
+      main {
+        overflow: clip;
+      }
+
+      .hero {
+        border-bottom: 1px solid var(--line);
+        background:
+          linear-gradient(180deg, rgba(238, 245, 255, 0.74) 0%, rgba(255, 255, 255, 0) 54%),
+          radial-gradient(circle at 84% 18%, rgba(21, 93, 252, 0.09), rgba(21, 93, 252, 0) 34%),
+          #fff;
+      }
+
+      .hero-inner {
+        width: min(100%, var(--max));
+        margin: 0 auto;
+        padding: 78px 20px 46px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(310px, 0.85fr);
+        gap: 52px;
+        align-items: center;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(3.2rem, 8vw, 6.7rem);
+        line-height: 0.92;
+        max-width: 760px;
+        letter-spacing: 0;
+      }
+
+      .hero-copy {
+        margin: 22px 0 0;
+        max-width: 650px;
+        color: #334665;
+        font-size: clamp(1.15rem, 2vw, 1.48rem);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 32px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 48px;
+        padding: 0 20px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-weight: 740;
+        color: var(--ink);
+        background: white;
+        box-shadow: 0 8px 22px rgba(8, 23, 53, 0.06);
+      }
+
+      .button.primary {
+        color: white;
+        background: var(--blue);
+        border-color: var(--blue);
+      }
+
+      .button:hover,
+      .button:focus-visible {
+        transform: translateY(-1px);
+        outline: none;
+        box-shadow: 0 14px 26px rgba(8, 23, 53, 0.12);
+      }
+
+      .button.primary:hover,
+      .button.primary:focus-visible {
+        background: var(--blue-dark);
+      }
+
+      .hero-panel {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.84);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .panel-head {
+        min-height: 48px;
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .status-dots {
+        display: flex;
+        gap: 7px;
+      }
+
+      .status-dots span {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #c7d2e4;
+      }
+
+      .terminal {
+        padding: 22px;
+        background: var(--code);
+        color: #dbeafe;
+        font: 0.92rem/1.75 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
+
+      .prompt {
+        color: #86efac;
+      }
+
+      .section {
+        width: min(100%, var(--max));
+        margin: 0 auto;
+        padding: 54px 20px;
+      }
+
+      .section-heading {
+        margin: 0 0 18px;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: clamp(1.55rem, 3vw, 2.25rem);
+        line-height: 1.08;
+      }
+
+      .section-heading p {
+        margin: 0;
+        max-width: 570px;
+        color: var(--muted);
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .skill-card {
+        min-height: 208px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: white;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .skill-card:hover {
+        border-color: #a9bdeb;
+        box-shadow: 0 14px 30px rgba(8, 23, 53, 0.07);
+      }
+
+      .skill-icon {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        color: var(--blue);
+        background: var(--panel-strong);
+        border: 1px solid #cfe0ff;
+        border-radius: 8px;
+      }
+
+      .skill-card h3 {
+        margin: 0;
+        font-size: 1.02rem;
+      }
+
+      .skill-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.96rem;
+      }
+
+      .split {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        background: var(--panel);
+      }
+
+      .split-inner {
+        width: min(100%, var(--max));
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+
+      .install,
+      .verify {
+        padding: 52px 20px;
+      }
+
+      .install {
+        border-right: 1px solid var(--line);
+      }
+
+      .install p,
+      .verify p {
+        color: var(--muted);
+      }
+
+      .tabs {
+        display: flex;
+        gap: 22px;
+        margin: 24px 0 14px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .tab {
+        padding: 0 0 10px;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        background: transparent;
+        color: var(--muted);
+        font: inherit;
+        font-weight: 720;
+        cursor: pointer;
+      }
+
+      .tab[aria-selected="true"] {
+        color: var(--blue);
+        border-bottom-color: var(--blue);
+      }
+
+      .codebox {
+        position: relative;
+        margin: 0;
+        padding: 20px 54px 20px 20px;
+        border-radius: 8px;
+        background: var(--code);
+        color: #eff6ff;
+        overflow-x: auto;
+        font: 0.92rem/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+
+      .copy-button {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        width: 36px;
+        height: 36px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.06);
+        color: #dbeafe;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+      }
+
+      .checklist {
+        margin: 24px 0 0;
+        padding: 0;
+        list-style: none;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background: white;
+      }
+
+      .checklist li {
+        min-height: 50px;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .checklist li:last-child {
+        border-bottom: 0;
+      }
+
+      .check-left {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        color: #253550;
+      }
+
+      .ok {
+        color: var(--green);
+        font-weight: 740;
+        font-size: 0.84rem;
+      }
+
+      .usage-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .prompt-card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 18px;
+        background: white;
+      }
+
+      .prompt-card code {
+        color: #17366e;
+        font: 0.92rem/1.65 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+
+      .footer {
+        border-top: 1px solid var(--line);
+        background: white;
+      }
+
+      .footer-inner {
+        width: min(100%, var(--max));
+        min-height: 92px;
+        margin: 0 auto;
+        padding: 22px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        color: var(--muted);
+      }
+
+      .footer strong {
+        color: var(--ink);
+      }
+
+      svg {
+        width: 1.1em;
+        height: 1.1em;
+        flex: 0 0 auto;
+      }
+
+      @media (max-width: 900px) {
+        .nav {
+          align-items: flex-start;
+          flex-direction: column;
+          padding: 14px 20px 0;
+          gap: 10px;
+        }
+
+        .nav-links {
+          width: 100%;
+          overflow-x: auto;
+        }
+
+        .nav-links a {
+          padding: 12px 10px 14px;
+          white-space: nowrap;
+        }
+
+        .hero-inner,
+        .split-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-inner {
+          padding-top: 52px;
+          gap: 32px;
+        }
+
+        .install {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .skills-grid,
+        .usage-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .section-heading {
+          align-items: start;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .brand {
+          font-size: 1rem;
+        }
+
+        .hero-inner {
+          padding-top: 38px;
+          width: 100vw;
+          max-width: 100vw;
+        }
+
+        .section,
+        .split-inner {
+          width: 100vw;
+          max-width: 100vw;
+        }
+
+        .hero-copy,
+        .hero-panel,
+        .terminal,
+        .section-heading p,
+        .skill-card,
+        .prompt-card,
+        .codebox,
+        .checklist {
+          width: calc(100vw - 40px);
+          max-width: calc(100vw - 40px);
+        }
+
+        h1 {
+          font-size: clamp(2.55rem, 13vw, 3.05rem);
+          line-height: 0.98;
+          max-width: 100%;
+        }
+
+        .actions {
+          flex-direction: column;
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        .terminal,
+        .codebox {
+          font-size: 0.82rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .button:hover,
+        .button:focus-visible {
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="topbar">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="#main" aria-label="Web Craft Skills home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M8.5 5 3 12l5.5 7M15.5 5 21 12l-5.5 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span>Web Craft Skills</span>
+        </a>
+        <div class="nav-links">
+          <a href="#skills">Skills</a>
+          <a href="#install">Install</a>
+          <a href="#verify">Verify</a>
+          <a href="#usage">Usage</a>
+          <a href="https://github.com/ai-moto/web-craft-skills" aria-label="View on GitHub">
+            <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .5A11.5 11.5 0 0 0 8.36 22.9c.58.1.79-.25.79-.56v-2c-3.22.7-3.9-1.38-3.9-1.38-.53-1.34-1.3-1.7-1.3-1.7-1.06-.73.08-.72.08-.72 1.17.08 1.79 1.21 1.79 1.21 1.04 1.78 2.73 1.27 3.4.97.1-.76.41-1.27.74-1.56-2.57-.29-5.28-1.29-5.28-5.73 0-1.27.45-2.3 1.2-3.11-.12-.29-.52-1.48.11-3.07 0 0 .98-.31 3.18 1.19a11.1 11.1 0 0 1 5.8 0c2.2-1.5 3.17-1.19 3.17-1.19.64 1.59.24 2.78.12 3.07.75.81 1.2 1.84 1.2 3.11 0 4.45-2.72 5.43-5.3 5.72.42.36.79 1.06.79 2.15v3.18c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/>
+            </svg>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-inner">
+          <div>
+            <h1>Web Craft Skills</h1>
+            <p class="hero-copy">Focused Codex skills for building better websites: design direction, teaching-oriented builds, motion polish, brand assets, security review, and launch QA.</p>
+            <div class="actions" aria-label="Primary actions">
+              <a class="button primary" href="#install">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M5 21h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Install
+              </a>
+              <a class="button" href="https://github.com/ai-moto/web-craft-skills">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 .5A11.5 11.5 0 0 0 8.36 22.9c.58.1.79-.25.79-.56v-2c-3.22.7-3.9-1.38-3.9-1.38-.53-1.34-1.3-1.7-1.3-1.7-1.06-.73.08-.72.08-.72 1.17.08 1.79 1.21 1.79 1.21 1.04 1.78 2.73 1.27 3.4.97.1-.76.41-1.27.74-1.56-2.57-.29-5.28-1.29-5.28-5.73 0-1.27.45-2.3 1.2-3.11-.12-.29-.52-1.48.11-3.07 0 0 .98-.31 3.18 1.19a11.1 11.1 0 0 1 5.8 0c2.2-1.5 3.17-1.19 3.17-1.19.64 1.59.24 2.78.12 3.07.75.81 1.2 1.84 1.2 3.11 0 4.45-2.72 5.43-5.3 5.72.42.36.79 1.06.79 2.15v3.18c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/>
+                </svg>
+                View on GitHub
+              </a>
+            </div>
+          </div>
+          <aside class="hero-panel" aria-label="Example prompt">
+            <div class="panel-head">
+              <span>Try a skill</span>
+              <span class="status-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+            </div>
+            <div class="terminal">
+              <span class="prompt">$</span> Use $web-design-director to redesign this landing page.<br>
+              <span class="prompt">$</span> Use $web-security-review to audit this app.<br>
+              <span class="prompt">$</span> Use $web-launch-qa to verify launch readiness.
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="section-heading">
+          <h2>Included skills</h2>
+          <p>Each skill has one clear job, so Codex can choose the right workflow without pulling in unrelated project details.</p>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4zM4 10h16" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+            <h3>$web-build-coach</h3>
+            <p>Build educational websites while explaining important architecture and implementation decisions.</p>
+          </article>
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m9 18-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>$web-design-director</h3>
+            <p>Shape responsive visual hierarchy, UX layout, design systems, typography, color, and components.</p>
+          </article>
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19c7-1 11-5 12-12M17 7h-5M17 7v5M5 12h5M5 12v5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>$web-motion-polish</h3>
+            <p>Add purposeful, accessible animation and micro-interactions without slowing down the interface.</p>
+          </article>
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 4 7v6c0 5 3.4 7.5 8 8 4.6-.5 8-3 8-8V7zM9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>$web-security-review</h3>
+            <p>Review authorized websites for practical risks, evidence, minimal fixes, and remaining test gaps.</p>
+          </article>
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v4M12 17v4M4.6 7.6l2.8 2.8M16.6 16.6l2.8 2.8M3 12h4M17 12h4M4.6 16.4l2.8-2.8M16.6 7.4l2.8-2.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <h3>$web-brand-assets</h3>
+            <p>Create and review logos, icons, favicons, app icons, and social preview asset implementation.</p>
+          </article>
+          <article class="skill-card">
+            <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19h16M7 16l3-3 2 2 5-6M17 9h-4M17 9v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>$web-launch-qa</h3>
+            <p>Verify launch readiness with browser checks, metadata review, and PASS/FAIL/BLOCKED evidence.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="split" id="install">
+        <div class="split-inner">
+          <div class="install">
+            <h2>Install</h2>
+            <p>Install as repo-scoped skills for one project, or as user skills when you want them across projects.</p>
+            <div class="tabs" role="tablist" aria-label="Install method">
+              <button class="tab" type="button" role="tab" aria-selected="true" data-install="repo">Repo</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-install="user">User</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-install="clone">Clone</button>
+            </div>
+            <pre class="codebox"><code id="install-code">mkdir -p .agents/skills
+cp -R web-craft-skills/skills/* .agents/skills/</code><button class="copy-button" type="button" aria-label="Copy install command"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 8h11v13H8zM5 16H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button></pre>
+            <p>Restart Codex if newly copied skills do not appear. Invoke skills explicitly with the `$skill-name` syntax.</p>
+          </div>
+          <div class="verify" id="verify">
+            <h2>Verify</h2>
+            <p>Before sharing the pack, confirm that structure, content, and rendering are clean.</p>
+            <ul class="checklist">
+              <li><span class="check-left"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 12 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> All six skills are listed</span><span class="ok">OK</span></li>
+              <li><span class="check-left"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 12 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Plugin manifest validates</span><span class="ok">OK</span></li>
+              <li><span class="check-left"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 12 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Private project terms are absent</span><span class="ok">OK</span></li>
+              <li><span class="check-left"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 12 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Page renders on desktop and mobile</span><span class="ok">OK</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="usage">
+        <div class="section-heading">
+          <h2>Usage examples</h2>
+          <p>Use a skill explicitly when you want a specific workflow, or let Codex invoke a skill when the prompt matches its description.</p>
+        </div>
+        <div class="usage-grid">
+          <div class="prompt-card"><code>Use $web-build-coach to build a portfolio site and explain the file structure.</code></div>
+          <div class="prompt-card"><code>Use $web-design-director to redesign this landing page for a local bakery.</code></div>
+          <div class="prompt-card"><code>Use $web-security-review to audit this Next.js app before launch.</code></div>
+          <div class="prompt-card"><code>Use $web-launch-qa to verify this website before I publish it.</code></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div><strong>Web Craft Skills</strong><br>MIT licensed, product-neutral Codex skill pack.</div>
+        <a class="button" href="https://github.com/ai-moto/web-craft-skills">View on GitHub</a>
+      </div>
+    </footer>
+
+    <script>
+      const installCommands = {
+        repo: 'mkdir -p .agents/skills\ncp -R web-craft-skills/skills/* .agents/skills/',
+        user: 'mkdir -p "$HOME/.agents/skills"\ncp -R web-craft-skills/skills/* "$HOME/.agents/skills/"',
+        clone: 'git clone https://github.com/ai-moto/web-craft-skills.git\ncd web-craft-skills'
+      };
+
+      const code = document.querySelector('#install-code');
+      const tabs = document.querySelectorAll('.tab');
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          tabs.forEach((item) => item.setAttribute('aria-selected', 'false'));
+          tab.setAttribute('aria-selected', 'true');
+          code.textContent = installCommands[tab.dataset.install];
+        });
+      });
+
+      document.querySelector('.copy-button').addEventListener('click', async (event) => {
+        try {
+          await navigator.clipboard.writeText(code.textContent);
+          event.currentTarget.setAttribute('aria-label', 'Install command copied');
+          setTimeout(() => {
+            event.currentTarget.setAttribute('aria-label', 'Copy install command');
+          }, 1200);
+        } catch {
+          event.currentTarget.setAttribute('aria-label', 'Copy failed');
+        }
+      });
+    </script>
+  </body>
+</html>
