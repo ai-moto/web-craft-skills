@@ -1,0 +1,24 @@
+{
+  "name": "web-craft-skills",
+  "displayName": "Web Craft Skills",
+  "version": "0.3.0",
+  "description": "Eighteen focused skills for building, reviewing, launching, and improving websites and web apps — design, accessibility, security, SEO, performance, payments, deployment, AI integration, data resilience, and orchestrated launch QA.",
+  "author": {
+    "name": "Ahmad Akkawi"
+  },
+  "homepage": "https://ai-moto.github.io/web-craft-skills/",
+  "repository": "https://github.com/ai-moto/web-craft-skills",
+  "license": "UNLICENSED",
+  "keywords": [
+    "web",
+    "frontend",
+    "design",
+    "security",
+    "qa",
+    "seo",
+    "accessibility",
+    "performance",
+    "analytics",
+    "launch"
+  ]
+}

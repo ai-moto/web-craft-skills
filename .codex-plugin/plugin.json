@@ -1,7 +1,7 @@
 {
   "name": "web-craft-skills",
-  "version": "0.2.3",
-  "description": "A comprehensive Codex skill pack for building, reviewing, launching, and improving websites and web apps.",
+  "version": "0.3.0",
+  "description": "A comprehensive skill pack for building, reviewing, launching, and improving websites and web apps.",
   "author": {
     "name": "Ahmad Akkawi"
   },
@@ -16,13 +16,15 @@
     "accessibility",
     "performance",
     "analytics",
-    "education"
+    "education",
+    "ai",
+    "resilience"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Web Craft Skills",
-    "shortDescription": "Build and launch better websites with Codex.",
-    "longDescription": "Web Craft Skills is a product-neutral Codex plugin that bundles 16 focused skills for educational web builds, interface design, motion, brand assets, accessibility, security, SEO, email, performance, analytics, legal/privacy, payments, deployment, core-flow testing, content quality, and final launch QA.",
+    "shortDescription": "Build and launch better websites.",
+    "longDescription": "Web Craft Skills is a product-neutral skill pack that bundles 18 focused skills for educational web builds, interface design, motion, brand assets, accessibility, security, SEO, email, performance, analytics, legal/privacy, payments, deployment, AI integration, data resilience, core-flow testing, content quality, and orchestrated launch QA. Four gates ship deterministic zero-dependency scripts.",
     "developerName": "Ahmad Akkawi",
     "category": "Developer Tools",
     "capabilities": [
@@ -32,8 +34,8 @@
     ],
     "defaultPrompt": [
       "Use $web-launch-qa to verify this site before launch.",
-      "Use $web-seo-findability and $web-performance-audit to improve this site.",
-      "Use $web-core-flow-testing to walk the main user flows."
+      "Use $web-ai-integration to review the AI features in this app.",
+      "Use $web-data-resilience to check backups and recovery readiness."
     ],
     "brandColor": "#2563EB"
   }
