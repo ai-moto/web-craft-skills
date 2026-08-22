@@ -237,11 +237,12 @@
 
       .motion-board {
         position: relative;
-        min-height: 178px;
+        min-height: 248px;
+        padding: 18px;
         border: 1px solid var(--line);
         border-radius: var(--radius);
         background:
-          linear-gradient(135deg, rgba(238, 245, 255, 0.86), rgba(255, 255, 255, 0.72)),
+          linear-gradient(135deg, rgba(238, 245, 255, 0.92), rgba(255, 255, 255, 0.74) 58%, rgba(241, 245, 249, 0.95)),
           white;
         box-shadow: 0 18px 46px rgba(0, 0, 0, 0.07);
         overflow: hidden;
@@ -253,7 +254,7 @@
         position: absolute;
         inset: 0;
         background:
-          linear-gradient(90deg, transparent, rgba(21, 93, 252, 0.1), transparent),
+          linear-gradient(90deg, transparent 10%, rgba(21, 93, 252, 0.1), transparent 70%),
           linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.04));
         transform: translateX(-58%);
         animation: board-scan 1400ms cubic-bezier(0.16, 1, 0.3, 1) 1 both;
@@ -264,92 +265,264 @@
         animation: board-scan 780ms cubic-bezier(0.16, 1, 0.3, 1) 1 both;
       }
 
-      .motion-routes {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        color: #9bb4dd;
-      }
-
-      .motion-routes path {
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 2;
-        stroke-linecap: round;
-        stroke-dasharray: 10 13;
-        animation: route-flow 1400ms linear 1;
-      }
-
-      .motion-board.is-routing .motion-routes path {
-        animation: route-flow 780ms linear 1;
-      }
-
-      .motion-routes .route-build {
-        color: var(--blue);
-      }
-
-      .motion-routes .route-trust {
-        color: var(--teal);
-        animation-delay: -1.1s;
-      }
-
-      .motion-routes .route-launch {
-        color: var(--amber);
-        animation-delay: -2.2s;
-      }
-
-      .route-chip {
-        position: absolute;
+      .motion-top {
+        position: relative;
         z-index: 1;
-        min-width: 82px;
-        padding: 8px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .motion-title {
+        display: grid;
+        gap: 2px;
+      }
+
+      .motion-title strong {
+        font-size: 0.94rem;
+      }
+
+      .motion-title span {
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .motion-replay {
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.82);
+        color: var(--blue);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+      }
+
+      .motion-replay:hover,
+      .motion-replay:focus-visible {
+        border-color: #a9bdeb;
+        background: white;
+        outline: none;
+        transform: translateY(-1px);
+      }
+
+      .sequencer {
+        position: relative;
+        z-index: 1;
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: 94px minmax(0, 1fr) 94px;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .sequence-card {
+        min-height: 78px;
+        padding: 12px;
         border: 1px solid #cfe0ff;
         border-radius: 8px;
         background: rgba(255, 255, 255, 0.9);
+        display: grid;
+        align-content: center;
+        gap: 3px;
         color: #24405f;
-        font-size: 0.82rem;
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.05);
+      }
+
+      .sequence-card strong {
+        color: var(--ink);
+        font-size: 0.9rem;
+      }
+
+      .sequence-card span {
+        color: var(--muted);
+        font-size: 0.72rem;
+      }
+
+      .route-rails {
+        min-height: 140px;
+        display: grid;
+        gap: 8px;
+      }
+
+      .route-rail {
+        --rail: var(--blue);
+        min-height: 29px;
+        display: grid;
+        grid-template-columns: 64px minmax(0, 1fr) 28px;
+        align-items: center;
+        gap: 8px;
+        opacity: 0.55;
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .rail-label {
+        padding: 5px 8px;
+        border: 1px solid rgba(148, 163, 184, 0.45);
+        border-radius: 7px;
+        background: rgba(255, 255, 255, 0.72);
+        color: #334665;
+        font-size: 0.74rem;
         font-weight: 760;
         text-align: center;
-        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
-        transition: border-color 180ms ease, color 180ms ease, transform 180ms ease, background 180ms ease;
       }
 
-      .route-chip.source {
-        left: 20px;
-        top: 68px;
-        color: var(--blue);
+      .rail-track {
+        position: relative;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(148, 163, 184, 0.42), rgba(148, 163, 184, 0.18));
+        overflow: visible;
       }
 
-      .route-chip.build {
-        left: 39%;
-        top: 18px;
-      }
-
-      .route-chip.trust {
-        left: 39%;
-        top: 68px;
-      }
-
-      .route-chip.launch {
-        left: 39%;
-        top: 118px;
-      }
-
-      .route-chip.output {
-        right: 20px;
-        top: 68px;
-        color: var(--green);
-      }
-
-      .motion-board[data-track="build"] .route-chip.build,
-      .motion-board[data-track="trust"] .route-chip.trust,
-      .motion-board[data-track="launch"] .route-chip.launch,
-      .motion-board[data-track="qa"] .route-chip.output {
-        border-color: var(--blue);
-        color: var(--ink);
+      .rail-track::before,
+      .rail-track::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 7px;
+        height: 7px;
+        border: 1px solid rgba(148, 163, 184, 0.45);
+        border-radius: 50%;
         background: white;
-        transform: translateY(-2px);
+        transform: translateY(-50%);
+      }
+
+      .rail-track::before {
+        left: 0;
+      }
+
+      .rail-track::after {
+        right: 0;
+      }
+
+      .rail-signal {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 13px;
+        height: 13px;
+        border: 2px solid white;
+        border-radius: 50%;
+        background: var(--rail);
+        opacity: 0;
+        transform: translate(-5px, -50%);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+      }
+
+      .rail-gate {
+        width: 26px;
+        height: 26px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(148, 163, 184, 0.45);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.68);
+        color: var(--muted);
+        font-size: 0.8rem;
+        font-weight: 800;
+      }
+
+      .rail-build {
+        --rail: var(--blue);
+      }
+
+      .rail-trust {
+        --rail: var(--teal);
+      }
+
+      .rail-launch {
+        --rail: var(--amber);
+      }
+
+      .rail-qa {
+        --rail: var(--green);
+      }
+
+      .motion-board[data-track="build"] .rail-build,
+      .motion-board[data-track="trust"] .rail-trust,
+      .motion-board[data-track="launch"] .rail-launch,
+      .motion-board[data-track="qa"] .rail-qa {
+        opacity: 1;
+        transform: translateX(2px);
+      }
+
+      .motion-board[data-track="build"] .rail-build .rail-label,
+      .motion-board[data-track="trust"] .rail-trust .rail-label,
+      .motion-board[data-track="launch"] .rail-launch .rail-label,
+      .motion-board[data-track="qa"] .rail-qa .rail-label {
+        border-color: color-mix(in srgb, var(--rail) 52%, white);
+        background: white;
+        color: var(--ink);
+      }
+
+      .motion-board[data-track="build"] .rail-build .rail-track,
+      .motion-board[data-track="trust"] .rail-trust .rail-track,
+      .motion-board[data-track="launch"] .rail-launch .rail-track,
+      .motion-board[data-track="qa"] .rail-qa .rail-track {
+        background: linear-gradient(90deg, var(--rail), color-mix(in srgb, var(--rail) 18%, white));
+      }
+
+      .motion-board[data-track="build"] .rail-build .rail-gate,
+      .motion-board[data-track="trust"] .rail-trust .rail-gate,
+      .motion-board[data-track="launch"] .rail-launch .rail-gate,
+      .motion-board[data-track="qa"] .rail-qa .rail-gate {
+        border-color: color-mix(in srgb, var(--rail) 54%, white);
+        color: var(--rail);
+        background: white;
+      }
+
+      .motion-board.is-routing[data-track="build"] .rail-build .rail-signal,
+      .motion-board.is-routing[data-track="trust"] .rail-trust .rail-signal,
+      .motion-board.is-routing[data-track="launch"] .rail-launch .rail-signal,
+      .motion-board.is-routing[data-track="qa"] .rail-qa .rail-signal {
+        animation: signal-travel 820ms cubic-bezier(0.16, 1, 0.3, 1) 1 both;
+      }
+
+      .motion-board.is-routing .sequence-card.in {
+        animation: card-hand-off 360ms cubic-bezier(0.16, 1, 0.3, 1) 1;
+      }
+
+      .motion-board.is-routing .sequence-card.out {
+        animation: card-receive 560ms cubic-bezier(0.16, 1, 0.3, 1) 1 260ms both;
+      }
+
+      .motion-foot {
+        position: relative;
+        z-index: 1;
+        margin-top: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .motion-foot span {
+        color: var(--muted);
+        font-size: 0.76rem;
+      }
+
+      .motion-meter {
+        width: min(42%, 168px);
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(148, 163, 184, 0.22);
+        overflow: hidden;
+      }
+
+      .motion-meter i {
+        display: block;
+        width: 34%;
+        height: 100%;
+        border-radius: inherit;
+        background: var(--blue);
+        transform: translateX(0);
+      }
+
+      .motion-board.is-routing .motion-meter i {
+        animation: meter-run 820ms cubic-bezier(0.16, 1, 0.3, 1) 1 both;
       }
 
       .hero-panel {
@@ -705,12 +878,6 @@
         flex: 0 0 auto;
       }
 
-      @keyframes route-flow {
-        to {
-          stroke-dashoffset: -46;
-        }
-      }
-
       @keyframes board-scan {
         0%, 18% {
           transform: translateX(-58%);
@@ -718,6 +885,75 @@
 
         58%, 100% {
           transform: translateX(58%);
+        }
+      }
+
+      @keyframes signal-travel {
+        0% {
+          opacity: 0;
+          transform: translate(-5px, -50%) scale(0.72);
+          filter: blur(2px);
+        }
+
+        12% {
+          opacity: 1;
+          filter: blur(0);
+        }
+
+        78% {
+          opacity: 1;
+        }
+
+        100% {
+          opacity: 0;
+          transform: translate(calc(100% - 8px), -50%) scale(1);
+        }
+      }
+
+      @keyframes card-hand-off {
+        0% {
+          transform: translateX(0);
+        }
+
+        45% {
+          transform: translateX(4px);
+        }
+
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes card-receive {
+        0% {
+          transform: translateX(0);
+          box-shadow: 0 10px 22px rgba(0, 0, 0, 0.05);
+        }
+
+        58% {
+          transform: translateX(-4px);
+          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1);
+        }
+
+        100% {
+          transform: translateX(0);
+          box-shadow: 0 10px 22px rgba(0, 0, 0, 0.05);
+        }
+      }
+
+      @keyframes meter-run {
+        0% {
+          transform: translateX(-110%);
+          background: var(--blue);
+        }
+
+        55% {
+          background: var(--teal);
+        }
+
+        100% {
+          transform: translateX(210%);
+          background: var(--green);
         }
       }
 
@@ -842,27 +1078,50 @@
         }
 
         .motion-board {
-          min-height: 168px;
+          min-height: 294px;
+          padding: 14px;
         }
 
-        .route-chip {
-          min-width: 68px;
-          padding: 7px 8px;
-          font-size: 0.73rem;
+        .motion-title span,
+        .motion-foot span {
+          font-size: 0.7rem;
         }
 
-        .route-chip.source {
-          left: 10px;
+        .sequencer {
+          grid-template-columns: 1fr;
+          gap: 10px;
+          margin-top: 12px;
         }
 
-        .route-chip.build,
-        .route-chip.trust,
-        .route-chip.launch {
-          left: 36%;
+        .sequence-card {
+          min-height: 54px;
+          grid-template-columns: auto 1fr;
+          align-items: baseline;
+          column-gap: 8px;
         }
 
-        .route-chip.output {
-          right: 10px;
+        .route-rails {
+          min-height: 128px;
+          gap: 6px;
+        }
+
+        .route-rail {
+          grid-template-columns: 58px minmax(0, 1fr) 26px;
+          gap: 7px;
+        }
+
+        .rail-label {
+          font-size: 0.7rem;
+        }
+
+        .motion-foot {
+          align-items: start;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .motion-meter {
+          width: 100%;
         }
 
         .actions {
@@ -896,9 +1155,10 @@
           display: none;
         }
 
-        .motion-routes path {
-          animation: none;
-          stroke-dasharray: none;
+        .motion-board.is-routing .rail-signal,
+        .motion-board.is-routing .sequence-card,
+        .motion-board.is-routing .motion-meter i {
+          animation: none !important;
         }
 
         .button:hover,
@@ -961,17 +1221,54 @@
             </div>
           </div>
           <div class="hero-stack">
-            <div class="motion-board" data-track="qa" aria-label="Animated skill routing graphic">
-              <svg class="motion-routes" viewBox="0 0 480 178" aria-hidden="true">
-                <path class="route-build" d="M88 88 C160 88 168 36 230 36 S320 88 392 88"/>
-                <path class="route-trust" d="M88 88 C164 88 180 88 236 88 S314 88 392 88"/>
-                <path class="route-launch" d="M88 88 C160 88 168 140 230 140 S320 88 392 88"/>
-              </svg>
-              <span class="route-chip source">Prompt</span>
-              <span class="route-chip build">Build</span>
-              <span class="route-chip trust">Trust</span>
-              <span class="route-chip launch">Launch</span>
-              <span class="route-chip output">Ready</span>
+            <div class="motion-board" data-track="qa" aria-label="Interactive skill routing sequencer">
+              <div class="motion-top">
+                <div class="motion-title">
+                  <strong>Skill routing</strong>
+                  <span id="motion-status">QA route selected</span>
+                </div>
+                <button class="motion-replay" type="button" aria-label="Replay routing motion">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M7 7h7a5 5 0 1 1-4.2 7.7M7 7v5M7 7h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="sequencer" aria-hidden="true">
+                <div class="sequence-card in">
+                  <strong>Prompt</strong>
+                  <span>intent enters</span>
+                </div>
+                <div class="route-rails">
+                  <div class="route-rail rail-build">
+                    <span class="rail-label">Build</span>
+                    <span class="rail-track"><span class="rail-signal"></span></span>
+                    <span class="rail-gate">01</span>
+                  </div>
+                  <div class="route-rail rail-trust">
+                    <span class="rail-label">Trust</span>
+                    <span class="rail-track"><span class="rail-signal"></span></span>
+                    <span class="rail-gate">02</span>
+                  </div>
+                  <div class="route-rail rail-launch">
+                    <span class="rail-label">Launch</span>
+                    <span class="rail-track"><span class="rail-signal"></span></span>
+                    <span class="rail-gate">03</span>
+                  </div>
+                  <div class="route-rail rail-qa">
+                    <span class="rail-label">QA</span>
+                    <span class="rail-track"><span class="rail-signal"></span></span>
+                    <span class="rail-gate">04</span>
+                  </div>
+                </div>
+                <div class="sequence-card out">
+                  <strong>Ready</strong>
+                  <span>prompt shaped</span>
+                </div>
+              </div>
+              <div class="motion-foot">
+                <span>Click any skill card to reroute the signal.</span>
+                <span class="motion-meter" aria-hidden="true"><i></i></span>
+              </div>
             </div>
             <aside class="hero-panel" aria-label="Example prompt">
               <div class="panel-head">
@@ -1149,6 +1446,8 @@ cp -R web-craft-skills/skills/* .agents/skills/</code><button class="copy-button
       const livePrompt = document.querySelector('#live-prompt');
       const promptTerminal = document.querySelector('#prompt-terminal');
       const motionBoard = document.querySelector('.motion-board');
+      const motionStatus = document.querySelector('#motion-status');
+      const replayButton = document.querySelector('.motion-replay');
       const filterSummary = document.querySelector('#skill-filter-summary');
       const trackLabels = {
         all: 'all',
@@ -1211,6 +1510,7 @@ cp -R web-craft-skills/skills/* .agents/skills/</code><button class="copy-button
         card.classList.add('is-active');
         livePrompt.textContent = card.dataset.prompt;
         motionBoard.dataset.track = card.dataset.track;
+        motionStatus.textContent = `${trackLabels[card.dataset.track]} route selected`;
         animatePrompt();
         animateRoute();
       };
@@ -1261,6 +1561,8 @@ cp -R web-craft-skills/skills/* .agents/skills/</code><button class="copy-button
         });
       });
 
+      replayButton.addEventListener('click', animateRoute);
+
       document.querySelector('.copy-button').addEventListener('click', async (event) => {
         const button = event.currentTarget;
         const copied = await copyText(code.textContent);
@@ -1273,6 +1575,8 @@ cp -R web-craft-skills/skills/* .agents/skills/</code><button class="copy-button
           button.setAttribute('aria-label', 'Copy failed');
         }
       });
+
+      window.setTimeout(animateRoute, 360);
     </script>
   </body>
 </html>
