@@ -1,6 +1,6 @@
 ---
 name: web-payments-launch
-description: Verify payment and billing readiness for websites and apps. Use for Stripe or other processors, checkout, subscriptions, trials, coupons, receipts, taxes, refunds, webhooks, live-mode testing, server-side entitlement checks, paywalls, customer portal, failed payments, idempotency, fraud controls, and merchant-of-record handoff.
+description: Verify payment and billing readiness for websites and apps. Use for Stripe or other processors, checkout, subscriptions, trials, coupons, receipts, taxes, refunds, webhooks, live-mode testing, server-side entitlement checks, paywalls, customer portal, failed payments, idempotency, fraud controls, and merchant-of-record handoff. Not for clicking through the checkout UI as a user (use $web-core-flow-testing), whether refund and merchant-of-record terms are disclosed on public pages (use $web-legal-compliance), whether a receipt reaches the inbox (use $web-email-launch), generic auth and injection review outside the money path (use $web-security-review), or model-provider spend the product pays out (use $web-ai-integration) — this gate owns money coming in, the processor state, webhooks, entitlement, and provider console.
 ---
 
 # Web Payments Launch
@@ -34,3 +34,12 @@ description: Verify payment and billing readiness for websites and apps. Use for
 ## Output
 
 Use PASS/FAIL/BLOCKED by flow. State whether evidence is code-only, sandbox-tested, live-tested, or provider-console-verified.
+
+## Severity
+
+Report findings on this pack's shared scale so a launch report can aggregate
+them without translation: `P0` blocks launch, `P1` is first-week, `P2`/`P3` are
+backlog and polish. Gates are `PASS`, `FAIL`, `BLOCKED`, or `N/A` — `BLOCKED`
+means not tested and never rounds up to `PASS`. Tag `OWNER` on anything whose
+resolution is a human decision rather than a code change. Full contract:
+[`$web-launch-qa` reference/severity.md](../web-launch-qa/reference/severity.md).

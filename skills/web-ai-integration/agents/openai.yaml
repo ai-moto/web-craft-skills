@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web AI Integration"
+  short_description: "Harden AI features before launch"
+  default_prompt: "Use $web-ai-integration to review the AI features in this app before launch."

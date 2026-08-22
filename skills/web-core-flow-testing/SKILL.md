@@ -1,6 +1,6 @@
 ---
 name: web-core-flow-testing
-description: Test real user journeys in websites and apps. Use for signup, login, onboarding, forms, search, filters, checkout, paywalls, account settings, contact forms, uploads, downloads, links, buttons, menus, mobile walkthroughs, cross-browser checks, 404/error pages, empty/loading/error states, and attempts to break core flows before launch.
+description: Test real user journeys in websites and apps. Use for signup, login, onboarding, forms, search, filters, checkout, paywalls, account settings, contact forms, uploads, downloads, links, buttons, menus, mobile walkthroughs, cross-browser checks, 404/error pages, empty/loading/error states, and attempts to break core flows before launch. Not for aggregating multiple gates into a go/no-go report (use $web-launch-qa), the processor, webhook, and entitlement layer behind a checkout (use $web-payments-launch), whether an attacker can bypass the auth a flow uses (use $web-security-review), whether the resulting email reaches an inbox (use $web-email-launch), keyboard and screen-reader traversal of the same screens (use $web-accessibility-audit), or the wording inside an empty, error, or 404 state (use $web-content-quality) — this gate owns the legitimate user's path through the UI and where it breaks.
 ---
 
 # Web Core Flow Testing
@@ -33,3 +33,12 @@ description: Test real user journeys in websites and apps. Use for signup, login
 ## Output
 
 Use step-by-step PASS/FAIL/BLOCKED results. For failures, include reproduction steps, expected behavior, actual behavior, and likely owner/file.
+
+## Severity
+
+Report findings on this pack's shared scale so a launch report can aggregate
+them without translation: `P0` blocks launch, `P1` is first-week, `P2`/`P3` are
+backlog and polish. Gates are `PASS`, `FAIL`, `BLOCKED`, or `N/A` — `BLOCKED`
+means not tested and never rounds up to `PASS`. Tag `OWNER` on anything whose
+resolution is a human decision rather than a code change. Full contract:
+[`$web-launch-qa` reference/severity.md](../web-launch-qa/reference/severity.md).

@@ -1,6 +1,6 @@
 ---
 name: web-analytics-observability
-description: Verify analytics, observability, and launch monitoring for websites and apps. Use for analytics installation, event naming, conversion funnels, Core Web Vitals tracking, error tracking, session replay with consent, bot protection, uptime checks, dashboards, alerting, privacy-safe telemetry, and confirming that tracking actually fires in production.
+description: Verify analytics, observability, and launch monitoring for websites and apps. Use for analytics installation, event naming, conversion funnels, Core Web Vitals tracking, error tracking, session replay with consent, bot protection, uptime checks, dashboards, alerting, privacy-safe telemetry, and confirming that tracking actually fires in production. Not for diagnosing or fixing the Core Web Vitals it reports (use $web-performance-audit), DNS, SSL, cache, or the post-deploy smoke test (use $web-deployment-ops), whether a consent notice and privacy policy are legally adequate (use $web-legal-compliance), or abuse controls on model endpoints (use $web-ai-integration) — this gate owns only the measurement layer, whether telemetry is installed, actually fires, and alerts someone.
 ---
 
 # Web Analytics Observability
@@ -34,3 +34,12 @@ description: Verify analytics, observability, and launch monitoring for websites
 ## Output
 
 Report what is installed, what fired successfully, what is missing, what is privacy-sensitive, and what should alert the owner after launch.
+
+## Severity
+
+Report findings on this pack's shared scale so a launch report can aggregate
+them without translation: `P0` blocks launch, `P1` is first-week, `P2`/`P3` are
+backlog and polish. Gates are `PASS`, `FAIL`, `BLOCKED`, or `N/A` — `BLOCKED`
+means not tested and never rounds up to `PASS`. Tag `OWNER` on anything whose
+resolution is a human decision rather than a code change. Full contract:
+[`$web-launch-qa` reference/severity.md](../web-launch-qa/reference/severity.md).

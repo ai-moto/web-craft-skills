@@ -1,6 +1,6 @@
 ---
 name: web-design-director
-description: Design, redesign, critique, and implement polished responsive website and web app interfaces. Use for visual direction, UX layout, information architecture, design systems, dashboards, landing pages, app shells, components, forms, onboarding, empty states, responsive polish, typography, color, spacing, and requests to make a webpage look professional, modern, premium, clear, delightful, or less generic.
+description: Design, redesign, critique, and implement polished responsive website and web app interfaces. Use for visual direction, UX layout, information architecture, design systems, dashboards, landing pages, app shells, components, forms, onboarding, empty states, responsive polish, typography, color, spacing, and requests to make a webpage look professional, modern, premium, clear, delightful, or less generic. Not for animation timing, transitions, and micro-interactions (use $web-motion-polish), producing logo, icon, favicon, or share-image files (use $web-brand-assets), writing or fact-checking the copy in the layout (use $web-content-quality), the WCAG conformance verdict (use $web-accessibility-audit), or a build whose point is teaching the user how it works (use $web-build-coach) — this gate owns the static composition, hierarchy, layout, type, color, and responsive behavior.
 ---
 
 # Web Design Director
@@ -37,3 +37,12 @@ description: Design, redesign, critique, and implement polished responsive websi
 ## Review Output
 
 When reviewing or proposing design changes, lead with the highest-impact issues and fixes. Use concrete language: name the affected screen, component, user task, and visible problem. When implementing, summarize the design choices and the verification evidence.
+
+## Severity
+
+Report findings on this pack's shared scale so a launch report can aggregate
+them without translation: `P0` blocks launch, `P1` is first-week, `P2`/`P3` are
+backlog and polish. Gates are `PASS`, `FAIL`, `BLOCKED`, or `N/A` — `BLOCKED`
+means not tested and never rounds up to `PASS`. Tag `OWNER` on anything whose
+resolution is a human decision rather than a code change. Full contract:
+[`$web-launch-qa` reference/severity.md](../web-launch-qa/reference/severity.md).

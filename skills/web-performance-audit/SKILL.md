@@ -1,6 +1,6 @@
 ---
 name: web-performance-audit
-description: Audit and improve web performance for websites and apps. Use for PageSpeed/Lighthouse, Core Web Vitals, image compression, layout shift, bundle size, unused libraries, render blocking assets, caching, lazy loading, route splitting, hydration cost, server response time, mobile speed, and performance regressions introduced by AI-generated code.
+description: Audit and improve web performance for websites and apps. Use for PageSpeed/Lighthouse, Core Web Vitals, image compression, layout shift, bundle size, unused libraries, render blocking assets, caching, lazy loading, route splitting, hydration cost, server response time, mobile speed, and performance regressions introduced by AI-generated code. Not for instrumenting or reporting the field metrics it diagnoses (use $web-analytics-observability), authoring the animations whose jank it measures (use $web-motion-polish), cache, CDN, and header configuration correctness (use $web-deployment-ops), dependency advisories rather than dependency weight (use $web-security-review), or the latency and timeout envelope of a model call (use $web-ai-integration) — this gate owns speed as a measured budget, what is heavy, what blocks, and what shifts.
 ---
 
 # Web Performance Audit
@@ -33,4 +33,13 @@ description: Audit and improve web performance for websites and apps. Use for Pa
 
 ## Output
 
-Prioritize fixes by likely user impact and effort. Include measured evidence, suspected cause, recommended fix, and how to verify it.
+Prioritize by user impact using the shared scale: `P0` for anything that makes a core task unusable on a target device, `P1` for measurable harm to a real journey, `P2`/`P3` for the rest. Note effort separately from severity — a cheap fix to a minor problem is still minor. Include measured evidence, suspected cause, recommended fix, and how to verify it.
+
+## Severity
+
+Report findings on this pack's shared scale so a launch report can aggregate
+them without translation: `P0` blocks launch, `P1` is first-week, `P2`/`P3` are
+backlog and polish. Gates are `PASS`, `FAIL`, `BLOCKED`, or `N/A` — `BLOCKED`
+means not tested and never rounds up to `PASS`. Tag `OWNER` on anything whose
+resolution is a human decision rather than a code change. Full contract:
+[`$web-launch-qa` reference/severity.md](../web-launch-qa/reference/severity.md).

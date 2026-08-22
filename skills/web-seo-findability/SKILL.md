@@ -1,6 +1,6 @@
 ---
 name: web-seo-findability
-description: Audit and improve website findability for search engines, social sharing, crawlers, and AI answer surfaces. Use for SEO basics, titles, descriptions, canonical URLs, Open Graph/Twitter cards, sitemap.xml, robots.txt, llms.txt, noindex mistakes, staging or localhost leftovers, structured data, public-page indexing, Google Search Console handoff, and share preview readiness.
+description: Audit and improve website findability for search engines, social sharing, crawlers, and AI answer surfaces. Use for SEO basics, titles, descriptions, canonical URLs, Open Graph/Twitter cards, sitemap.xml, robots.txt, llms.txt, noindex mistakes, staging or localhost leftovers, structured data, public-page indexing, Google Search Console handoff, and share preview readiness. Not for designing or exporting the share image itself (use $web-brand-assets), whether the prose behind a title is honest and persuasive (use $web-content-quality), server-side redirects, SSL, and canonical-host configuration (use $web-deployment-ops), or installing analytics and reading traffic dashboards (use $web-analytics-observability) — this gate owns the machine-readable layer, what crawlers, share cards, and AI answer surfaces parse.
 ---
 
 # Web SEO Findability
@@ -14,6 +14,25 @@ description: Audit and improve website findability for search engines, social sh
 5. Verify Open Graph and Twitter/X metadata: title, description, URL, image, image dimensions, and image accessibility.
 6. Check structured data only when it fits the page type. Do not invent schema for content that is not present.
 7. Produce a clear PASS/FAIL/BLOCKED report with exact URLs, files, and fixes.
+
+## Fast check
+
+Run the metadata gate across several pages at once. Comparing pages is the
+point — duplicate titles and a stray staging canonical only show up when the
+set is read together.
+
+```bash
+node <skill-dir>/scripts/check-metadata.mjs https://example.com
+node <skill-dir>/scripts/check-metadata.mjs https://example.com /pricing /docs /about
+```
+
+`<skill-dir>` is this skill's own directory — `.agents/skills/web-seo-findability/` in
+Codex, `.claude/skills/web-seo-findability/` in Claude Code, or `skills/web-seo-findability/` when
+running from a clone of the repo. Keep the working directory at the project root.
+
+It flags `noindex` in both the meta tag and the `X-Robots-Tag` header, resolves
+`og:image` to confirm it does not 404, and rejects `localhost`, preview, and
+staging hostnames anywhere in canonical, `og:url`, or the sitemap.
 
 ## Must-Check Items
 
@@ -34,4 +53,13 @@ description: Audit and improve website findability for search engines, social sh
 
 ## Output
 
-Lead with launch blockers, then first-week improvements, then optional polish. Include verification commands or browser observations whenever possible.
+Lead with `P0` launch blockers, then `P1` first-week improvements, then `P2`/`P3` polish. Include verification commands or browser observations whenever possible.
+
+## Severity
+
+Report findings on this pack's shared scale so a launch report can aggregate
+them without translation: `P0` blocks launch, `P1` is first-week, `P2`/`P3` are
+backlog and polish. Gates are `PASS`, `FAIL`, `BLOCKED`, or `N/A` — `BLOCKED`
+means not tested and never rounds up to `PASS`. Tag `OWNER` on anything whose
+resolution is a human decision rather than a code change. Full contract:
+[`$web-launch-qa` reference/severity.md](../web-launch-qa/reference/severity.md).

@@ -1,6 +1,6 @@
 ---
 name: web-motion-polish
-description: Add, review, or refine tasteful web animations and micro-interactions. Use for page transitions, hover/focus states, loading motion, scroll reveals, interactive demos, animated logos, dashboard state changes, game-feel polish, reducing jank, honoring prefers-reduced-motion, and making UI motion purposeful, accessible, and performant.
+description: Add, review, or refine tasteful web animations and micro-interactions. Use for page transitions, hover/focus states, loading motion, scroll reveals, interactive demos, animated logos, dashboard state changes, game-feel polish, reducing jank, honoring prefers-reduced-motion, and making UI motion purposeful, accessible, and performant. Not for static layout, hierarchy, type, color, and spacing decisions (use $web-design-director), the WCAG verdict on focus visibility and reduced motion (use $web-accessibility-audit), page-level load metrics and layout-shift budgets (use $web-performance-audit), or drawing the logo or icon being animated (use $web-brand-assets) — this gate owns behavior over time, what moves, how long it takes, and why the movement is legible.
 ---
 
 # Web Motion Polish
@@ -45,3 +45,12 @@ Good web motion usually does one of these jobs:
 ## Reporting
 
 When finished, describe the motion in user-task language: what interaction changed, why it helps, how reduced motion is handled, and what browser evidence was checked.
+
+## Severity
+
+Report findings on this pack's shared scale so a launch report can aggregate
+them without translation: `P0` blocks launch, `P1` is first-week, `P2`/`P3` are
+backlog and polish. Gates are `PASS`, `FAIL`, `BLOCKED`, or `N/A` — `BLOCKED`
+means not tested and never rounds up to `PASS`. Tag `OWNER` on anything whose
+resolution is a human decision rather than a code change. Full contract:
+[`$web-launch-qa` reference/severity.md](../web-launch-qa/reference/severity.md).
