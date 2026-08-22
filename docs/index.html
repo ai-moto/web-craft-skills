@@ -24,8 +24,10 @@
         --blue: #155dfc;
         --blue-dark: #0f43b8;
         --green: #16a34a;
+        --teal: #0f766e;
+        --amber: #b45309;
         --code: #07152e;
-        --shadow: 0 18px 50px rgba(8, 23, 53, 0.08);
+        --shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
         --radius: 8px;
         --max: 1160px;
       }
@@ -42,7 +44,7 @@
         margin: 0;
         background: var(--bg);
         color: var(--ink);
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-family: Aptos, "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
         line-height: 1.55;
         letter-spacing: 0;
         overflow-x: hidden;
@@ -107,6 +109,7 @@
         display: inline-flex;
         align-items: center;
         gap: 12px;
+        font-family: ui-rounded, "SF Pro Rounded", "Avenir Next", Aptos, "Segoe UI", sans-serif;
         font-weight: 800;
         font-size: 1.08rem;
       }
@@ -165,16 +168,17 @@
         margin: 0 auto;
         padding: 78px 20px 46px;
         display: grid;
-        grid-template-columns: minmax(0, 1.15fr) minmax(310px, 0.85fr);
+        grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
         gap: 52px;
         align-items: center;
       }
 
       h1 {
         margin: 0;
-        font-size: clamp(3.2rem, 8vw, 6.7rem);
+        font-family: ui-rounded, "SF Pro Rounded", "Avenir Next", Aptos, "Segoe UI", sans-serif;
+        font-size: 5.8rem;
         line-height: 0.92;
-        max-width: 760px;
+        max-width: 720px;
         letter-spacing: 0;
       }
 
@@ -182,7 +186,7 @@
         margin: 22px 0 0;
         max-width: 650px;
         color: #334665;
-        font-size: clamp(1.15rem, 2vw, 1.48rem);
+        font-size: 1.34rem;
       }
 
       .actions {
@@ -204,7 +208,8 @@
         font-weight: 740;
         color: var(--ink);
         background: white;
-        box-shadow: 0 8px 22px rgba(8, 23, 53, 0.06);
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.06);
+        transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
       }
 
       .button.primary {
@@ -217,12 +222,134 @@
       .button:focus-visible {
         transform: translateY(-1px);
         outline: none;
-        box-shadow: 0 14px 26px rgba(8, 23, 53, 0.12);
+        box-shadow: 0 14px 26px rgba(0, 0, 0, 0.12);
       }
 
       .button.primary:hover,
       .button.primary:focus-visible {
         background: var(--blue-dark);
+      }
+
+      .hero-stack {
+        display: grid;
+        gap: 16px;
+      }
+
+      .motion-board {
+        position: relative;
+        min-height: 178px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background:
+          linear-gradient(135deg, rgba(238, 245, 255, 0.86), rgba(255, 255, 255, 0.72)),
+          white;
+        box-shadow: 0 18px 46px rgba(0, 0, 0, 0.07);
+        overflow: hidden;
+        isolation: isolate;
+      }
+
+      .motion-board::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, transparent, rgba(21, 93, 252, 0.1), transparent),
+          linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.04));
+        transform: translateX(-58%);
+        animation: board-scan 1400ms cubic-bezier(0.16, 1, 0.3, 1) 1 both;
+        pointer-events: none;
+      }
+
+      .motion-board.is-routing::before {
+        animation: board-scan 780ms cubic-bezier(0.16, 1, 0.3, 1) 1 both;
+      }
+
+      .motion-routes {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        color: #9bb4dd;
+      }
+
+      .motion-routes path {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: 10 13;
+        animation: route-flow 1400ms linear 1;
+      }
+
+      .motion-board.is-routing .motion-routes path {
+        animation: route-flow 780ms linear 1;
+      }
+
+      .motion-routes .route-build {
+        color: var(--blue);
+      }
+
+      .motion-routes .route-trust {
+        color: var(--teal);
+        animation-delay: -1.1s;
+      }
+
+      .motion-routes .route-launch {
+        color: var(--amber);
+        animation-delay: -2.2s;
+      }
+
+      .route-chip {
+        position: absolute;
+        z-index: 1;
+        min-width: 82px;
+        padding: 8px 10px;
+        border: 1px solid #cfe0ff;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #24405f;
+        font-size: 0.82rem;
+        font-weight: 760;
+        text-align: center;
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.06);
+        transition: border-color 180ms ease, color 180ms ease, transform 180ms ease, background 180ms ease;
+      }
+
+      .route-chip.source {
+        left: 20px;
+        top: 68px;
+        color: var(--blue);
+      }
+
+      .route-chip.build {
+        left: 39%;
+        top: 18px;
+      }
+
+      .route-chip.trust {
+        left: 39%;
+        top: 68px;
+      }
+
+      .route-chip.launch {
+        left: 39%;
+        top: 118px;
+      }
+
+      .route-chip.output {
+        right: 20px;
+        top: 68px;
+        color: var(--green);
+      }
+
+      .motion-board[data-track="build"] .route-chip.build,
+      .motion-board[data-track="trust"] .route-chip.trust,
+      .motion-board[data-track="launch"] .route-chip.launch,
+      .motion-board[data-track="qa"] .route-chip.output {
+        border-color: var(--blue);
+        color: var(--ink);
+        background: white;
+        transform: translateY(-2px);
       }
 
       .hero-panel {
@@ -254,6 +381,15 @@
         height: 9px;
         border-radius: 50%;
         background: #c7d2e4;
+        animation: dot-pulse 1700ms ease-in-out 2;
+      }
+
+      .status-dots span:nth-child(2) {
+        animation-delay: 180ms;
+      }
+
+      .status-dots span:nth-child(3) {
+        animation-delay: 360ms;
       }
 
       .terminal {
@@ -263,6 +399,14 @@
         font: 0.92rem/1.75 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
         white-space: normal;
         overflow-wrap: anywhere;
+      }
+
+      .terminal-line {
+        display: block;
+      }
+
+      .terminal.is-updated .terminal-line:first-child {
+        animation: prompt-swap 520ms cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       .prompt {
@@ -285,7 +429,8 @@
 
       h2 {
         margin: 0;
-        font-size: clamp(1.55rem, 3vw, 2.25rem);
+        font-family: ui-rounded, "SF Pro Rounded", "Avenir Next", Aptos, "Segoe UI", sans-serif;
+        font-size: 2.1rem;
         line-height: 1.08;
       }
 
@@ -293,6 +438,48 @@
         margin: 0;
         max-width: 570px;
         color: var(--muted);
+      }
+
+      .skill-controls {
+        margin: 24px 0 18px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .filter-chip {
+        min-height: 38px;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: white;
+        color: #334665;
+        font: inherit;
+        font-weight: 720;
+        cursor: pointer;
+        transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+      }
+
+      .filter-chip:hover,
+      .filter-chip:focus-visible {
+        border-color: #a9bdeb;
+        color: var(--blue);
+        outline: none;
+        transform: translateY(-1px);
+      }
+
+      .filter-chip[aria-pressed="true"] {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: white;
+      }
+
+      .filter-summary {
+        min-height: 1.55em;
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 0.92rem;
       }
 
       .skills-grid {
@@ -310,11 +497,25 @@
         display: flex;
         flex-direction: column;
         gap: 16px;
+        cursor: pointer;
+        transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease, opacity 180ms ease;
       }
 
-      .skill-card:hover {
+      .skill-card:hover,
+      .skill-card:focus-visible {
         border-color: #a9bdeb;
-        box-shadow: 0 14px 30px rgba(8, 23, 53, 0.07);
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.07);
+        outline: none;
+        transform: translateY(-2px);
+      }
+
+      .skill-card.is-active {
+        border-color: var(--blue);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
+      }
+
+      .skill-card[hidden] {
+        display: none;
       }
 
       .skill-icon {
@@ -463,6 +664,13 @@
         border-radius: var(--radius);
         padding: 18px;
         background: white;
+        transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      }
+
+      .prompt-card:hover {
+        border-color: #a9bdeb;
+        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.06);
+        transform: translateY(-1px);
       }
 
       .prompt-card code {
@@ -497,6 +705,42 @@
         flex: 0 0 auto;
       }
 
+      @keyframes route-flow {
+        to {
+          stroke-dashoffset: -46;
+        }
+      }
+
+      @keyframes board-scan {
+        0%, 18% {
+          transform: translateX(-58%);
+        }
+
+        58%, 100% {
+          transform: translateX(58%);
+        }
+      }
+
+      @keyframes dot-pulse {
+        0%, 100% {
+          background: #c7d2e4;
+        }
+
+        45% {
+          background: #155dfc;
+        }
+      }
+
+      @keyframes prompt-swap {
+        from {
+          filter: blur(3px);
+        }
+
+        to {
+          filter: blur(0);
+        }
+      }
+
       @media (max-width: 900px) {
         .nav {
           align-items: flex-start;
@@ -523,6 +767,18 @@
         .hero-inner {
           padding-top: 52px;
           gap: 32px;
+        }
+
+        h1 {
+          font-size: 4.2rem;
+        }
+
+        h2 {
+          font-size: 1.85rem;
+        }
+
+        .hero-copy {
+          font-size: 1.18rem;
         }
 
         .install {
@@ -559,6 +815,7 @@
         }
 
         .hero-copy,
+        .motion-board,
         .hero-panel,
         .terminal,
         .section-heading p,
@@ -571,9 +828,41 @@
         }
 
         h1 {
-          font-size: clamp(2.55rem, 13vw, 3.05rem);
+          font-size: 2.85rem;
           line-height: 0.98;
           max-width: 100%;
+        }
+
+        h2 {
+          font-size: 1.55rem;
+        }
+
+        .hero-copy {
+          font-size: 1.05rem;
+        }
+
+        .motion-board {
+          min-height: 168px;
+        }
+
+        .route-chip {
+          min-width: 68px;
+          padding: 7px 8px;
+          font-size: 0.73rem;
+        }
+
+        .route-chip.source {
+          left: 10px;
+        }
+
+        .route-chip.build,
+        .route-chip.trust,
+        .route-chip.launch {
+          left: 36%;
+        }
+
+        .route-chip.output {
+          right: 10px;
         }
 
         .actions {
@@ -595,8 +884,30 @@
           scroll-behavior: auto;
         }
 
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        .motion-board::before {
+          display: none;
+        }
+
+        .motion-routes path {
+          animation: none;
+          stroke-dasharray: none;
+        }
+
         .button:hover,
-        .button:focus-visible {
+        .button:focus-visible,
+        .filter-chip:hover,
+        .filter-chip:focus-visible,
+        .skill-card:hover,
+        .skill-card:focus-visible,
+        .prompt-card:hover {
           transform: none;
         }
       }
@@ -649,17 +960,31 @@
               </a>
             </div>
           </div>
-          <aside class="hero-panel" aria-label="Example prompt">
-            <div class="panel-head">
-              <span>Try a skill</span>
-              <span class="status-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+          <div class="hero-stack">
+            <div class="motion-board" data-track="qa" aria-label="Animated skill routing graphic">
+              <svg class="motion-routes" viewBox="0 0 480 178" aria-hidden="true">
+                <path class="route-build" d="M88 88 C160 88 168 36 230 36 S320 88 392 88"/>
+                <path class="route-trust" d="M88 88 C164 88 180 88 236 88 S314 88 392 88"/>
+                <path class="route-launch" d="M88 88 C160 88 168 140 230 140 S320 88 392 88"/>
+              </svg>
+              <span class="route-chip source">Prompt</span>
+              <span class="route-chip build">Build</span>
+              <span class="route-chip trust">Trust</span>
+              <span class="route-chip launch">Launch</span>
+              <span class="route-chip output">Ready</span>
             </div>
-            <div class="terminal">
-              <span class="prompt">$</span> Use $web-launch-qa to verify launch readiness.<br>
-              <span class="prompt">$</span> Use $web-seo-findability to check crawlability.<br>
-              <span class="prompt">$</span> Use $web-core-flow-testing to walk signup and checkout.
-            </div>
-          </aside>
+            <aside class="hero-panel" aria-label="Example prompt">
+              <div class="panel-head">
+                <span>Try a skill</span>
+                <span class="status-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+              </div>
+              <div class="terminal" id="prompt-terminal" aria-live="polite">
+                <span class="terminal-line"><span class="prompt">$</span> <span id="live-prompt">Use $web-launch-qa to verify launch readiness.</span></span>
+                <span class="terminal-line"><span class="prompt">$</span> Use $web-seo-findability to check crawlability.</span>
+                <span class="terminal-line"><span class="prompt">$</span> Use $web-core-flow-testing to walk signup and checkout.</span>
+              </div>
+            </aside>
+          </div>
         </div>
       </section>
 
@@ -668,83 +993,91 @@
           <h2>Included skills</h2>
           <p>Sixteen focused skills cover the important lanes for most websites and apps without pulling in private project details.</p>
         </div>
+        <div class="skill-controls" aria-label="Filter skills">
+          <button class="filter-chip" type="button" data-filter="all" aria-label="Show all skills" aria-pressed="true">All</button>
+          <button class="filter-chip" type="button" data-filter="build" aria-label="Show Build skills" aria-pressed="false">Build</button>
+          <button class="filter-chip" type="button" data-filter="trust" aria-label="Show Trust skills" aria-pressed="false">Trust</button>
+          <button class="filter-chip" type="button" data-filter="launch" aria-label="Show Launch skills" aria-pressed="false">Launch</button>
+          <button class="filter-chip" type="button" data-filter="qa" aria-label="Show QA skills" aria-pressed="false">QA</button>
+        </div>
+        <p class="filter-summary" id="skill-filter-summary" aria-live="polite">Showing all 16 skills.</p>
         <div class="skills-grid">
-          <article class="skill-card">
+          <article class="skill-card" data-track="build" data-prompt="Use $web-build-coach to build a clear educational website and explain the important implementation decisions." tabindex="0" role="button" aria-label="Preview $web-build-coach prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4zM4 10h16" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
             <h3>$web-build-coach</h3>
             <p>Build educational websites while explaining important architecture and implementation decisions.</p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card" data-track="build" data-prompt="Use $web-design-director to improve this page's layout, hierarchy, typography, color, and responsive behavior." tabindex="0" role="button" aria-label="Preview $web-design-director prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m9 18-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <h3>$web-design-director</h3>
             <p>Shape responsive visual hierarchy, UX layout, design systems, typography, color, and components.</p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card" data-track="build" data-prompt="Use $web-motion-polish to add purposeful, accessible animation and micro-interactions to this interface." tabindex="0" role="button" aria-label="Preview $web-motion-polish prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 19c7-1 11-5 12-12M17 7h-5M17 7v5M5 12h5M5 12v5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <h3>$web-motion-polish</h3>
             <p>Add purposeful, accessible animation and micro-interactions without slowing down the interface.</p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card" data-track="build" data-prompt="Use $web-brand-assets to create and review logos, icons, favicons, app icons, and social preview assets." tabindex="0" role="button" aria-label="Preview $web-brand-assets prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v4M12 17v4M4.6 7.6l2.8 2.8M16.6 16.6l2.8 2.8M3 12h4M17 12h4M4.6 16.4l2.8-2.8M16.6 7.4l2.8-2.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             <h3>$web-brand-assets</h3>
             <p>Create and review logos, icons, favicons, app icons, and social preview asset implementation.</p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card" data-track="build" data-prompt="Use $web-content-quality to improve copy, CTAs, claims, docs, errors, and trust-building language." tabindex="0" role="button" aria-label="Preview $web-content-quality prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 6h14M5 12h10M5 18h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             <h3>$web-content-quality</h3>
             <p>Improve copy, CTAs, claims, docs, empty states, errors, and trust-building language.</p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card" data-track="trust" data-prompt="Use $web-accessibility-audit to review keyboard navigation, semantics, labels, contrast, forms, and reduced motion." tabindex="0" role="button" aria-label="Preview $web-accessibility-audit prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4a4 4 0 0 1 4 4c0 3-4 5-4 5s-4-2-4-5a4 4 0 0 1 4-4ZM4 20c2-3 5-4 8-4s6 1 8 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <h3>$web-accessibility-audit</h3>
             <p>Audit keyboard navigation, semantics, labels, contrast, zoom, forms, and reduced motion.</p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card" data-track="trust" data-prompt="Use $web-security-review to perform an authorized practical security review with evidence and fixes." tabindex="0" role="button" aria-label="Preview $web-security-review prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 4 7v6c0 5 3.4 7.5 8 8 4.6-.5 8-3 8-8V7zM9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <h3>$web-security-review</h3>
             <p>Review authorized websites for practical risks, evidence, minimal fixes, and remaining test gaps.</p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card" data-track="trust" data-prompt="Use $web-legal-compliance to review privacy, terms, cookie notices, consent, legal links, and public trust gaps." tabindex="0" role="button" aria-label="Preview $web-legal-compliance prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 20h12M7 16h10M8 12h8M9 8h6M10 4h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             <h3>$web-legal-compliance</h3>
             <p>Review privacy, terms, cookie notices, consent, legal links, and public trust gaps.</p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card" data-track="launch" data-prompt="Use $web-seo-findability to check metadata, crawlability, sitemap, robots, social previews, and indexing readiness." tabindex="0" role="button" aria-label="Preview $web-seo-findability prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18c5-10 11-10 16 0M8 18c3-5 5-5 8 0M12 18v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <h3>$web-seo-findability</h3>
             <p>Check metadata, crawlability, sitemap, robots, social previews, and indexing readiness.</p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card" data-track="launch" data-prompt="Use $web-email-launch to verify transactional email, sender domains, SPF, DKIM, DMARC, and inbox tests." tabindex="0" role="button" aria-label="Preview $web-email-launch prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16v12H4zM4 7l8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
             <h3>$web-email-launch</h3>
             <p>Verify transactional email, sender domains, SPF, DKIM, DMARC, and inbox tests.</p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card" data-track="launch" data-prompt="Use $web-performance-audit to improve speed, Core Web Vitals, image weight, bundle size, caching, and layout shift." tabindex="0" role="button" aria-label="Preview $web-performance-audit prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 1 0 9 9M12 12l5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             <h3>$web-performance-audit</h3>
             <p>Improve speed, Core Web Vitals, image weight, bundle size, caching, and layout shift.</p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card" data-track="launch" data-prompt="Use $web-analytics-observability to verify analytics, funnels, errors, web vitals, bot protection, and dashboards." tabindex="0" role="button" aria-label="Preview $web-analytics-observability prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5M8 17v-5M13 17V8M18 17v-8M4 19h17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
             <h3>$web-analytics-observability</h3>
             <p>Verify analytics, funnels, errors, web vitals, bot protection, and launch dashboards.</p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card" data-track="launch" data-prompt="Use $web-payments-launch to check checkout, subscriptions, webhooks, paywalls, receipts, refunds, and live-mode gates." tabindex="0" role="button" aria-label="Preview $web-payments-launch prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 7h16v10H4zM7 17v2h10v-2M8 11h3M15 11h1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <h3>$web-payments-launch</h3>
             <p>Check checkout, subscriptions, webhooks, paywalls, receipts, refunds, and live-mode gates.</p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card" data-track="launch" data-prompt="Use $web-deployment-ops to verify hosting, DNS, SSL, redirects, env config, cache, source maps, and rollback readiness." tabindex="0" role="button" aria-label="Preview $web-deployment-ops prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v6l4 2M5 20h14M7 20V8l5-4 5 4v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <h3>$web-deployment-ops</h3>
             <p>Verify hosting, DNS, SSL, redirects, env config, cache, source maps, and rollback readiness.</p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card" data-track="qa" data-prompt="Use $web-core-flow-testing to walk signup, login, forms, links, checkout, account, mobile, browser, 404, and error flows." tabindex="0" role="button" aria-label="Preview $web-core-flow-testing prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 7h12M6 12h8M6 17h5M17 15l2 2 3-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <h3>$web-core-flow-testing</h3>
             <p>Walk signup, login, forms, links, checkout, account, mobile, browser, 404, and error flows.</p>
           </article>
-          <article class="skill-card">
+          <article class="skill-card is-active" data-track="qa" data-prompt="Use $web-launch-qa to verify launch readiness across the full website or web app." tabindex="0" role="button" aria-label="Preview $web-launch-qa prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19h16M7 16l3-3 2 2 5-6M17 9h-4M17 9v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <h3>$web-launch-qa</h3>
             <p>Orchestrate final PASS/FAIL/BLOCKED launch readiness across the full web surface.</p>
@@ -811,6 +1144,21 @@ cp -R web-craft-skills/skills/* .agents/skills/</code><button class="copy-button
 
       const code = document.querySelector('#install-code');
       const tabs = document.querySelectorAll('.tab');
+      const filterButtons = document.querySelectorAll('.filter-chip');
+      const skillCards = [...document.querySelectorAll('.skill-card')];
+      const livePrompt = document.querySelector('#live-prompt');
+      const promptTerminal = document.querySelector('#prompt-terminal');
+      const motionBoard = document.querySelector('.motion-board');
+      const filterSummary = document.querySelector('#skill-filter-summary');
+      const trackLabels = {
+        all: 'all',
+        build: 'Build',
+        trust: 'Trust',
+        launch: 'Launch',
+        qa: 'QA'
+      };
+      let routeTimer;
+
       const copyText = async (text) => {
         if (navigator.clipboard && window.isSecureContext) {
           try {
@@ -838,6 +1186,78 @@ cp -R web-craft-skills/skills/* .agents/skills/</code><button class="copy-button
           tabs.forEach((item) => item.setAttribute('aria-selected', 'false'));
           tab.setAttribute('aria-selected', 'true');
           code.textContent = installCommands[tab.dataset.install];
+        });
+      });
+
+      const animatePrompt = () => {
+        promptTerminal.classList.remove('is-updated');
+        window.requestAnimationFrame(() => {
+          promptTerminal.classList.add('is-updated');
+        });
+      };
+
+      const animateRoute = () => {
+        window.clearTimeout(routeTimer);
+        motionBoard.classList.remove('is-routing');
+        void motionBoard.offsetWidth;
+        motionBoard.classList.add('is-routing');
+        routeTimer = window.setTimeout(() => {
+          motionBoard.classList.remove('is-routing');
+        }, 820);
+      };
+
+      const selectSkill = (card) => {
+        skillCards.forEach((item) => item.classList.remove('is-active'));
+        card.classList.add('is-active');
+        livePrompt.textContent = card.dataset.prompt;
+        motionBoard.dataset.track = card.dataset.track;
+        animatePrompt();
+        animateRoute();
+      };
+
+      const applyFilter = (track) => {
+        let visibleCount = 0;
+        filterButtons.forEach((button) => {
+          button.setAttribute('aria-pressed', String(button.dataset.filter === track));
+        });
+
+        skillCards.forEach((card) => {
+          const isVisible = track === 'all' || card.dataset.track === track;
+          card.hidden = !isVisible;
+          card.tabIndex = isVisible ? 0 : -1;
+          if (isVisible) {
+            visibleCount += 1;
+          }
+        });
+
+        const visibleCards = skillCards.filter((card) => !card.hidden);
+        const currentSelection = visibleCards.find((card) => card.classList.contains('is-active'));
+        if (!currentSelection && visibleCards.length > 0) {
+          selectSkill(visibleCards[0]);
+        }
+
+        const label = trackLabels[track];
+        filterSummary.textContent = track === 'all'
+          ? `Showing all ${visibleCount} skills.`
+          : `Showing ${visibleCount} ${label} skill${visibleCount === 1 ? '' : 's'}.`;
+      };
+
+      filterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          applyFilter(button.dataset.filter);
+        });
+      });
+
+      skillCards.forEach((card) => {
+        card.addEventListener('click', () => {
+          selectSkill(card);
+        });
+
+        card.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            selectSkill(card);
+          }
         });
       });
 

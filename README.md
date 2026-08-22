@@ -10,6 +10,8 @@ The public project page is designed for GitHub Pages and lives in [`docs/index.h
 https://ai-moto.github.io/web-craft-skills/
 ```
 
+The page includes an interactive skill filter, selectable skill cards, a live prompt preview, and a lightweight motion graphic that shows how prompts route through build, trust, launch, and QA tracks.
+
 ## What's Included
 
 ### Build And Design
