@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Core Flow Testing"
+  short_description: "Test forms links auth and flows"
+  default_prompt: "Use $web-core-flow-testing to walk through this app as a real user and find broken flows."

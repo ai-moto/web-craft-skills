@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Accessibility Audit"
+  short_description: "Audit accessible UI and content"
+  default_prompt: "Use $web-accessibility-audit to review this site for practical accessibility issues."

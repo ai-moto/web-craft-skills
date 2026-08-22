@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Payments Launch"
+  short_description: "Verify payments billing and webhooks"
+  default_prompt: "Use $web-payments-launch to verify Stripe or payment launch readiness."

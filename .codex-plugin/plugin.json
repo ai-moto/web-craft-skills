@@ -1,7 +1,7 @@
 {
   "name": "web-craft-skills",
-  "version": "0.1.0",
-  "description": "A focused Codex skill pack for building, polishing, reviewing, and teaching high-quality websites.",
+  "version": "0.2.0",
+  "description": "A comprehensive Codex skill pack for building, reviewing, launching, and improving websites and web apps.",
   "author": {
     "name": "Ahmad Akkawi"
   },
@@ -12,13 +12,17 @@
     "design",
     "security",
     "qa",
+    "seo",
+    "accessibility",
+    "performance",
+    "analytics",
     "education"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Web Craft Skills",
-    "shortDescription": "Build better websites with focused Codex skills.",
-    "longDescription": "Web Craft Skills is a general-purpose Codex plugin that bundles focused skills for educational web builds, interface design, motion polish, brand assets, security review, and launch QA. It is intentionally product-neutral and does not include private project details.",
+    "shortDescription": "Build and launch better websites with Codex.",
+    "longDescription": "Web Craft Skills is a product-neutral Codex plugin that bundles 16 focused skills for educational web builds, interface design, motion, brand assets, accessibility, security, SEO, email, performance, analytics, legal/privacy, payments, deployment, core-flow testing, content quality, and final launch QA.",
     "developerName": "Ahmad Akkawi",
     "category": "Developer Tools",
     "capabilities": [
@@ -27,9 +31,9 @@
       "Design"
     ],
     "defaultPrompt": [
-      "Use $web-build-coach to build and explain a webpage.",
-      "Use $web-security-review to audit this site.",
-      "Use $web-launch-qa to verify launch readiness."
+      "Use $web-launch-qa to verify this site before launch.",
+      "Use $web-seo-findability and $web-performance-audit to improve this site.",
+      "Use $web-core-flow-testing to walk the main user flows."
     ],
     "brandColor": "#2563EB"
   }

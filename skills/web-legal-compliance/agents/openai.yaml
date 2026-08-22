@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Legal Compliance"
+  short_description: "Check basic public-site compliance"
+  default_prompt: "Use $web-legal-compliance to review this website for legal and privacy launch gaps."

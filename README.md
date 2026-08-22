@@ -1,10 +1,10 @@
 # Web Craft Skills
 
-Focused Codex skills for building better websites.
+Focused Codex skills for building, reviewing, launching, and improving websites and web apps.
 
-Web Craft Skills is a small, product-neutral Codex plugin for people who want help building polished, accurate, educational websites. It bundles six focused skills for web design, implementation guidance, motion, brand assets, security review, and launch QA.
+Web Craft Skills is a product-neutral Codex plugin for people who want help building polished, accurate, production-ready web experiences. It bundles 16 focused skills across design, implementation, accessibility, security, SEO, email, performance, analytics, legal/privacy, payments, deployment, user-flow testing, content quality, and launch QA.
 
-The public project page is designed for GitHub Pages and lives in [`docs/index.html`](docs/index.html). After publishing this repository under `ai-moto/web-craft-skills` and enabling GitHub Pages, the page should be available at:
+The public project page is designed for GitHub Pages and lives in [`docs/index.html`](docs/index.html). The live page is available at:
 
 ```text
 https://ai-moto.github.io/web-craft-skills/
@@ -12,14 +12,36 @@ https://ai-moto.github.io/web-craft-skills/
 
 ## What's Included
 
+### Build And Design
+
 | Skill | Use it for |
 | --- | --- |
 | `$web-build-coach` | Build websites while explaining decisions in a useful teaching style. |
 | `$web-design-director` | Shape responsive layouts, visual hierarchy, UX, typography, color, and components. |
 | `$web-motion-polish` | Add purposeful, accessible, performant animation and micro-interactions. |
 | `$web-brand-assets` | Create and review logos, icons, favicons, social images, and brand asset implementation. |
+| `$web-content-quality` | Improve copy, CTAs, claims, documentation, empty states, errors, and trust language. |
+
+### Access, Trust, And Risk
+
+| Skill | Use it for |
+| --- | --- |
+| `$web-accessibility-audit` | Audit keyboard navigation, semantics, labels, contrast, zoom, forms, and screen reader basics. |
 | `$web-security-review` | Perform authorized practical security reviews with evidence and fixes. |
-| `$web-launch-qa` | Verify launch readiness with PASS/FAIL/BLOCKED evidence. |
+| `$web-legal-compliance` | Review privacy, terms, cookie notices, merchant-of-record clarity, consent, and public legal gaps. |
+
+### Launch Systems
+
+| Skill | Use it for |
+| --- | --- |
+| `$web-seo-findability` | Check metadata, crawlability, sitemap, robots, social previews, and indexing readiness. |
+| `$web-email-launch` | Verify transactional email, sender domains, SPF, DKIM, DMARC, and inbox smoke tests. |
+| `$web-performance-audit` | Improve speed, Core Web Vitals, image weight, bundle size, caching, and layout shift. |
+| `$web-analytics-observability` | Verify analytics, conversion funnels, error tracking, web vitals, bot protection, and dashboards. |
+| `$web-payments-launch` | Check checkout, subscriptions, Stripe/webhooks, paywalls, receipts, refunds, and live-mode gates. |
+| `$web-deployment-ops` | Verify hosting, DNS, SSL, redirects, environment config, source maps, cache, and rollback readiness. |
+| `$web-core-flow-testing` | Walk signup, login, forms, links, checkout, account, mobile, browser, 404, and error flows. |
+| `$web-launch-qa` | Orchestrate final PASS/FAIL/BLOCKED launch readiness across the full web surface. |
 
 ## Install
 
@@ -62,19 +84,23 @@ OpenAI's current guidance says standalone skills work well for local authoring, 
 ## Example Prompts
 
 ```text
-Use $web-build-coach to build a portfolio site and explain the file structure.
-```
-
-```text
-Use $web-design-director to redesign this landing page for a local bakery.
-```
-
-```text
-Use $web-security-review to audit this Next.js app before launch.
-```
-
-```text
 Use $web-launch-qa to verify this website before I publish it.
+```
+
+```text
+Use $web-seo-findability to check our sitemap, metadata, robots file, and social previews.
+```
+
+```text
+Use $web-email-launch to verify signup email, SPF, DKIM, DMARC, and inbox delivery.
+```
+
+```text
+Use $web-core-flow-testing to walk through signup, checkout, forms, links, and mobile flows.
+```
+
+```text
+Use $web-security-review and $web-payments-launch to review this SaaS app before launch.
 ```
 
 ## Verify
@@ -107,7 +133,7 @@ This repository includes a GitHub Pages workflow at [`.github/workflows/pages.ym
 
 - General and educational, not tied to a private product.
 - Practical enough to help Codex produce accurate builds.
-- Clear enough for new users to install and try.
+- Complete enough to cover website and app launch readiness end to end.
 - Focused enough that each skill has a recognizable job.
 
 ## License

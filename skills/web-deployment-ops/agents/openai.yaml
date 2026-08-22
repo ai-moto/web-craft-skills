@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Deployment Ops"
+  short_description: "Check hosting DNS SSL and redirects"
+  default_prompt: "Use $web-deployment-ops to verify hosting, DNS, SSL, redirects, and environment config."

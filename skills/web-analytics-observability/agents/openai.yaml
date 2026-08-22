@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Analytics Observability"
+  short_description: "Verify tracking errors and funnels"
+  default_prompt: "Use $web-analytics-observability to verify analytics, errors, vitals, and launch dashboards."

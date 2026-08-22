@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Email Launch"
+  short_description: "Verify website email deliverability"
+  default_prompt: "Use $web-email-launch to check signup, transactional email, and domain authentication."

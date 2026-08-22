@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web SEO Findability"
+  short_description: "Make sites discoverable and shareable"
+  default_prompt: "Use $web-seo-findability to audit this site for search and social sharing readiness."

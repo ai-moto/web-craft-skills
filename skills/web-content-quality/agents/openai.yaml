@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Content Quality"
+  short_description: "Improve copy claims and clarity"
+  default_prompt: "Use $web-content-quality to review public website copy for clarity, trust, and accuracy."
