@@ -33,10 +33,12 @@ jobs:
       # when invoked with no arguments.
       - name: Scripts handle missing arguments
         run: |
+          # GitHub runs steps under `bash -e`, so a bare failing command aborts the
+          # step before $? can be read. Capture the code in a || branch instead.
           rc=0
           for f in skills/*/scripts/*.mjs; do
-            node "$f" >/dev/null 2>&1
-            code=$?
+            code=0
+            node "$f" >/dev/null 2>&1 || code=$?
             if [ "$code" -ne 2 ]; then
               echo "::error file=$f::expected usage exit code 2, got $code"
               rc=1
