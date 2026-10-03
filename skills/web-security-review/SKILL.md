@@ -1,6 +1,6 @@
 ---
 name: web-security-review
-description: Perform authorized security reviews for websites and web apps. Use for static code review, local diff review, dependency risk, secrets scanning, frontend and backend web security, authentication/session review, CSP/CORS/headers, XSS/CSRF/open redirect/file upload risks, serverless/API route review, deployment config hardening, and practical security findings with evidence and fixes.
+description: Perform authorized security reviews for websites and web apps. Use for static code review, local diff review, dependency risk, secrets scanning, frontend and backend web security, authentication/session review, CSP/CORS/headers, XSS/CSRF/open redirect/file upload risks, serverless/API route review, deployment config hardening, and practical security findings with evidence and fixes. Not for the model call path such as provider keys, prompt injection, and model-output sanitisation (use $web-ai-integration), live DNS, SSL, redirect, and header verification as a release gate (use $web-deployment-ops), processor and entitlement correctness (use $web-payments-launch), backup, restore, and migration recoverability (use $web-data-resilience), or whether a legitimate user's login actually works (use $web-core-flow-testing) — this gate owns the attacker's path through code and config the user is authorized to review.
 ---
 
 # Web Security Review
@@ -38,7 +38,7 @@ Do not claim a site is secure. State what was checked, what evidence supports th
 
 Lead with findings ordered by severity. Use this shape:
 
-- Severity: `P0`, `P1`, `P2`, or `P3`.
+- Severity: `P0`, `P1`, `P2`, or `P3` on this pack's shared scale, plus `OWNER` when the fix is a provider or policy decision.
 - Location: file and line, endpoint, config key, or URL.
 - Risk: what can go wrong and who can trigger it.
 - Evidence: the exact code, config, command result, or live observation.
@@ -49,3 +49,12 @@ If no issues are found, say that clearly and list residual risk: untested live p
 ## Educational Notes
 
 Explain why a finding matters in practical terms. Avoid fear-heavy language. Distinguish exploitable issues from defense-in-depth improvements. Prefer minimal fixes that preserve intended behavior.
+
+## Severity
+
+Report findings on this pack's shared scale so a launch report can aggregate
+them without translation: `P0` blocks launch, `P1` is first-week, `P2`/`P3` are
+backlog and polish. Gates are `PASS`, `FAIL`, `BLOCKED`, or `N/A` — `BLOCKED`
+means not tested and never rounds up to `PASS`. Tag `OWNER` on anything whose
+resolution is a human decision rather than a code change. Full contract:
+[`$web-launch-qa` reference/severity.md](../web-launch-qa/reference/severity.md).

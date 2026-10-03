@@ -1,0 +1,4 @@
+interface:
+  display_name: "Web Data Resilience"
+  short_description: "Backups, migrations, and recovery"
+  default_prompt: "Use $web-data-resilience to check backups, migrations, and recovery readiness for this app."

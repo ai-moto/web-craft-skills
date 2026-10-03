@@ -1,8 +1,10 @@
 # Web Craft Skills
 
-Focused Codex skills for building, reviewing, launching, and improving websites and web apps.
+Focused skills for building, reviewing, launching, and improving websites and web apps. Works in Codex and Claude Code.
 
-Web Craft Skills is a product-neutral Codex plugin for people who want help building polished, accurate, production-ready web experiences. It bundles 16 focused skills across design, implementation, accessibility, security, SEO, email, performance, analytics, legal/privacy, payments, deployment, user-flow testing, content quality, and launch QA.
+Web Craft Skills is a product-neutral skill pack for people who want help building polished, accurate, production-ready web experiences. It bundles 18 focused skills across design, implementation, accessibility, security, SEO, email, performance, analytics, legal/privacy, payments, deployment, AI integration, data resilience, user-flow testing, content quality, and launch QA.
+
+Four gates ship deterministic scripts that use Node builtins only — no install step, no dependencies. They answer the questions that are easy to get wrong by eye: whether SPF exceeds its DNS-lookup limit, what the full redirect chain actually does, whether an `og:image` 404s, whether `apple-touch-icon.png` is really 180x180.
 
 The public project page is designed for GitHub Pages and lives in [`docs/index.html`](docs/index.html). The live page is available at:
 
@@ -31,6 +33,7 @@ The page includes an interactive skill filter, selectable skill cards, a live pr
 | `$web-accessibility-audit` | Audit keyboard navigation, semantics, labels, contrast, zoom, forms, and screen reader basics. |
 | `$web-security-review` | Perform authorized practical security reviews with evidence and fixes. |
 | `$web-legal-compliance` | Review privacy, terms, cookie notices, merchant-of-record clarity, consent, and public legal gaps. |
+| `$web-ai-integration` | Harden AI features: key exposure, prompt injection, output handling, cost caps, provider fallback. |
 
 ### Launch Systems
 
@@ -42,8 +45,54 @@ The page includes an interactive skill filter, selectable skill cards, a live pr
 | `$web-analytics-observability` | Verify analytics, conversion funnels, error tracking, web vitals, bot protection, and dashboards. |
 | `$web-payments-launch` | Check checkout, subscriptions, Stripe/webhooks, paywalls, receipts, refunds, and live-mode gates. |
 | `$web-deployment-ops` | Verify hosting, DNS, SSL, redirects, environment config, source maps, cache, and rollback readiness. |
+| `$web-data-resilience` | Verify backups, tested restores, migration safety, deletion paths, and recovery runbooks. |
 | `$web-core-flow-testing` | Walk signup, login, forms, links, checkout, account, mobile, browser, 404, and error flows. |
-| `$web-launch-qa` | Orchestrate final PASS/FAIL/BLOCKED launch readiness across the full web surface. |
+| `$web-launch-qa` | Route every launch gate to its specialist skill and aggregate one PASS/FAIL/BLOCKED report. |
+
+## Testing
+
+Structural validity and correct routing are different questions. Check both.
+
+**Does the plugin load?**
+
+```bash
+claude plugin validate ./web-craft-skills
+claude --plugin-dir ./web-craft-skills -p "List the skills you have available."
+```
+
+**Do the right skills fire?**
+
+Eighteen skills that all describe web work compete for the same prompt. The
+routing harness runs real prompts through a real session with the pack loaded
+and asserts which skill actually fired:
+
+```bash
+node test/run-trigger-tests.mjs
+```
+
+Each case runs with `--allowedTools Skill`, so the session can pick a skill and
+nothing else — it cannot edit files, run commands, or reach the network. Misroutes
+print the transcript path so you can see what the model was reasoning about.
+Requires an authenticated `claude` CLI.
+
+**Do the scripts work?**
+
+```bash
+node skills/web-email-launch/scripts/check-email-dns.mjs github.com
+node skills/web-deployment-ops/scripts/check-headers.mjs example.com
+node skills/web-seo-findability/scripts/check-metadata.mjs https://example.com /pricing
+node skills/web-brand-assets/scripts/check-icons.mjs --url https://example.com
+```
+
+All four exit `1` on a `P0`/`P1`, `2` on a usage error, and `3` when the target
+could not be evaluated — so a dead host or a mistyped path fails CI rather than
+passing silently.
+
+**Is the pack safe to publish?**
+
+```bash
+node test/check-pack-hygiene.mjs
+```
 
 ## Install
 
@@ -54,6 +103,16 @@ Use this when you want the skills available only inside a specific project.
 ```bash
 mkdir -p .agents/skills
 cp -R web-craft-skills/skills/* .agents/skills/
+```
+
+### Claude Code
+
+The same `skills/` directory works unchanged. Install as a plugin from the repo
+root, or copy the skills into a project:
+
+```bash
+mkdir -p .claude/skills
+cp -R web-craft-skills/skills/* .claude/skills/
 ```
 
 Start or restart Codex from that repository, then invoke a skill:
@@ -105,21 +164,21 @@ Use $web-core-flow-testing to walk through signup, checkout, forms, links, and m
 Use $web-security-review and $web-payments-launch to review this SaaS app before launch.
 ```
 
-## Verify
+## Pre-publish check
 
-Run the bundled validation scripts from a Codex environment that has the OpenAI skill-creator and plugin-creator tools available:
+This pack is public and is authored inside a private repository, so the risk is
+not a broken skill — it is a client name, a local absolute path, or a credential
+riding along. That check is worthless as a checklist item someone reads and nods
+at, so it runs:
 
 ```bash
-python3 /path/to/skill-creator/scripts/quick_validate.py skills/web-build-coach
-python3 /path/to/plugin-creator/scripts/validate_plugin.py .
+node test/check-pack-hygiene.mjs
 ```
 
-At minimum, verify:
-
-- Every skill folder has a valid `SKILL.md`.
-- `.codex-plugin/plugin.json` validates.
-- No private project names, credentials, secrets, client data, or product-specific launch notes are included.
-- The GitHub Pages site renders on desktop and mobile.
+It scans every file for private terms, common secret formats, and local absolute
+paths, then verifies frontmatter shape, internal links, referenced script paths,
+and that the skill count matches everywhere it is written down. Exits non-zero on
+any finding, so it belongs in CI before a Pages deploy.
 
 ## Publish To GitHub Pages
 
@@ -134,7 +193,7 @@ This repository includes a GitHub Pages workflow at [`.github/workflows/pages.ym
 ## Project Goals
 
 - General and educational, not tied to a private product.
-- Practical enough to help Codex produce accurate builds.
+- Practical enough to help an agent produce accurate builds.
 - Complete enough to cover website and app launch readiness end to end.
 - Focused enough that each skill has a recognizable job.
 
@@ -142,4 +201,4 @@ This repository includes a GitHub Pages workflow at [`.github/workflows/pages.ym
 
 Copyright © 2026 Ahmad Akkawi. All rights reserved.
 
-This repository is public so people can read the description, learn from the skill structure, and install the skills for their own Codex setup. No open-source license is granted. Reuse, redistribution, modified versions, commercial packaging, or publishing this skill pack elsewhere requires written permission from the owner.
+This repository is public so people can read the description, learn from the skill structure, and install the skills for their own Codex or Claude Code setup. No open-source license is granted. Reuse, redistribution, modified versions, commercial packaging, or publishing this skill pack elsewhere requires written permission from the owner.

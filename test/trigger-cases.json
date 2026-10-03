@@ -1,0 +1,22 @@
+[
+ {"prompt":"Is our OpenAI key exposed anywhere on the frontend?","expect":"web-ai-integration","why":"$web-security-review also claims secrets scanning; the tiebreak is a model-provider key on a prompt route"},
+ {"prompt":"Scan the repo for hardcoded secrets before we make it public.","expect":"web-security-review","why":"same keyword family as case 1 but no model in the path"},
+ {"prompt":"If a bad migration wipes the users table tomorrow morning, what happens?","expect":"web-data-resilience","why":"'migration' plus disaster reads as deployment; only this gate owns restores"},
+ {"prompt":"The deploy went out broken — what's our rollback procedure?","expect":"web-deployment-ops","why":"mirror of case 3 on the same word; $web-data-resilience claims reversibility"},
+ {"prompt":"Make my landing page look less generic.","expect":"web-design-director","why":"four-way collision with motion, brand, and content"},
+ {"prompt":"The site looks fine but feels dead — nothing responds when you click.","expect":"web-motion-polish","why":"'looks/feels' pulls design, but the complaint is interaction feedback over time"},
+ {"prompt":"The icon on the iPhone home screen is blurry.","expect":"web-brand-assets","why":"sounds like metadata or design; it is the apple-touch-icon dimension case"},
+ {"prompt":"Our link preview on Slack and Twitter shows nothing at all.","expect":"web-seo-findability","why":"both this and $web-brand-assets ship an og:image checker; nothing rendering is the tag"},
+ {"prompt":"Can you give me a go/no-go before I ship this Friday?","expect":"web-launch-qa","why":"eleven skills contain the word launch; only multi-gate aggregation should reach the orchestrator"},
+ {"prompt":"Open the site in a browser and try to break it.","expect":"web-core-flow-testing","why":"$web-launch-qa advertises browser QA as its own capability"},
+ {"prompt":"Check the dashboard for contrast issues and keyboard traps.","expect":"web-accessibility-audit","why":"$web-design-director's body claims keyboard, focus, semantics, and colour meaning"},
+ {"prompt":"GA4 is firing before anyone clicks accept on the cookie banner.","expect":"web-analytics-observability","why":"$web-legal-compliance owns cookie notices; the defect is tag load order"},
+ {"prompt":"Do we need an accessibility statement before we launch in Europe?","expect":"web-legal-compliance","why":"$web-accessibility-audit claims WCAG launch review; a published statement is a disclosure decision"},
+ {"prompt":"Can someone hit /success directly and get the Pro plan without paying?","expect":"web-payments-launch","why":"three-way with security and core-flow; entitlement is this gate's named territory"},
+ {"prompt":"Order receipts aren't showing up in customers' Gmail.","expect":"web-email-launch","why":"'receipts' appears verbatim in both this and $web-payments-launch"},
+ {"prompt":"Run Lighthouse and fix whatever it flags.","expect":"web-performance-audit","why":"Lighthouse spans performance, a11y, and SEO; only this gate claims Lighthouse"},
+ {"prompt":"The homepage says 'trusted by 10,000 teams' and we have about 40 customers.","expect":"web-content-quality","why":"$web-legal-compliance claims public claims risk; accuracy of copy is content"},
+ {"prompt":"Build me a pricing page and walk me through why you structured it that way.","expect":"web-build-coach","why":"$web-design-director claims implementing pricing layout; 'walk me through why' is the only signal"},
+ {"prompt":"Our hosting free trial ends in six weeks — what breaks on that day?","expect":"web-deployment-ops","why":"this and $web-ai-integration have near-identical body text about trial expiry"},
+ {"prompt":"Our model provider credits expire October 1 — what happens to the app?","expect":"web-ai-integration","why":"mirror of case 19 across the same collision"}
+]

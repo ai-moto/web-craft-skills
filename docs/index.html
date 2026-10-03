@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Web Craft Skills</title>
-    <meta name="description" content="Focused Codex skills for building, reviewing, launching, and improving websites and web apps.">
+    <meta name="description" content="Eighteen focused skills for building, reviewing, launching, and improving websites and web apps. Runs in Codex and Claude Code.">
     <meta property="og:title" content="Web Craft Skills">
-    <meta property="og:description" content="Focused Codex skills for building, reviewing, launching, and improving websites and web apps.">
+    <meta property="og:description" content="Eighteen focused skills for building, reviewing, launching, and improving websites and web apps. Runs in Codex and Claude Code.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ai-moto.github.io/web-craft-skills/">
     <meta name="twitter:card" content="summary">
@@ -355,8 +355,8 @@
         grid-template-columns: 64px minmax(0, 1fr) 28px;
         align-items: center;
         gap: 8px;
-        opacity: 0.55;
-        transition: opacity 180ms ease, transform 180ms ease;
+        opacity: 0.34;
+        transition: opacity 200ms ease, transform 200ms ease;
       }
 
       .rail-label {
@@ -426,19 +426,23 @@
       }
 
       .rail-build {
-        --rail: var(--blue);
+        --rail: #155dfc;
+        --rail-ink: #0f43b8;
       }
 
       .rail-trust {
-        --rail: var(--teal);
+        --rail: #0d9488;
+        --rail-ink: #0f766e;
       }
 
       .rail-launch {
-        --rail: var(--amber);
+        --rail: #e08409;
+        --rail-ink: #b45309;
       }
 
       .rail-qa {
-        --rail: var(--green);
+        --rail: #16a34a;
+        --rail-ink: #15803d;
       }
 
       .motion-board[data-track="build"] .rail-build,
@@ -449,13 +453,23 @@
         transform: translateX(2px);
       }
 
+      .motion-board[data-track="build"] .rail-build .rail-track,
+      .motion-board[data-track="trust"] .rail-trust .rail-track,
+      .motion-board[data-track="launch"] .rail-launch .rail-track,
+      .motion-board[data-track="qa"] .rail-qa .rail-track {
+        height: 3px;
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--rail) 12%, transparent);
+      }
+
       .motion-board[data-track="build"] .rail-build .rail-label,
       .motion-board[data-track="trust"] .rail-trust .rail-label,
       .motion-board[data-track="launch"] .rail-launch .rail-label,
       .motion-board[data-track="qa"] .rail-qa .rail-label {
-        border-color: color-mix(in srgb, var(--rail) 52%, white);
+        border-color: color-mix(in srgb, var(--rail) 62%, white);
         background: white;
-        color: var(--ink);
+        color: var(--rail-ink, var(--ink));
+        font-weight: 820;
+        box-shadow: 0 1px 6px color-mix(in srgb, var(--rail) 18%, transparent);
       }
 
       .motion-board[data-track="build"] .rail-build .rail-track,
@@ -469,8 +483,8 @@
       .motion-board[data-track="trust"] .rail-trust .rail-gate,
       .motion-board[data-track="launch"] .rail-launch .rail-gate,
       .motion-board[data-track="qa"] .rail-qa .rail-gate {
-        border-color: color-mix(in srgb, var(--rail) 54%, white);
-        color: var(--rail);
+        border-color: color-mix(in srgb, var(--rail) 62%, white);
+        color: var(--rail-ink, var(--rail));
         background: white;
       }
 
@@ -772,6 +786,27 @@
         color: #eff6ff;
         overflow-x: auto;
         font: 0.92rem/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+
+      .codebox.is-sample {
+        padding: 20px;
+        font-size: 0.86rem;
+        line-height: 1.65;
+        white-space: pre;
+      }
+
+      .sample-cmd {
+        color: #86efac;
+      }
+
+      .sample-flag {
+        color: #fca5a5;
+        font-weight: 700;
+      }
+
+      .sample-note {
+        margin: 14px 0 0;
+        font-size: 0.92rem;
       }
 
       .copy-button {
@@ -1188,7 +1223,7 @@
         <div class="nav-links">
           <a href="#skills">Skills</a>
           <a href="#install">Install</a>
-          <a href="#verify">Verify</a>
+          <a href="#verify">What it catches</a>
           <a href="#usage">Usage</a>
           <a href="https://github.com/ai-moto/web-craft-skills" aria-label="View on GitHub">
             <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -1204,7 +1239,7 @@
         <div class="hero-inner">
           <div>
             <h1>Web Craft Skills</h1>
-            <p class="hero-copy">Focused Codex skills for building, reviewing, launching, and improving websites and web apps across design, accessibility, security, SEO, email, performance, analytics, payments, deployment, content, and QA.</p>
+            <p class="hero-copy">Eighteen focused skills for building, reviewing, launching, and improving websites and web apps &mdash; design, accessibility, security, SEO, email, performance, analytics, payments, deployment, AI integration, data resilience, content, and QA. Four gates ship deterministic scripts. Runs in Codex and Claude Code.</p>
             <div class="actions" aria-label="Primary actions">
               <a class="button primary" href="#install">
                 <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -1288,7 +1323,7 @@
       <section class="section" id="skills">
         <div class="section-heading">
           <h2>Included skills</h2>
-          <p>Sixteen focused skills cover the important lanes for most websites and apps without pulling in private project details.</p>
+          <p>Eighteen focused skills cover the important lanes for most websites and apps without pulling in private project details.</p>
         </div>
         <div class="skill-controls" aria-label="Filter skills">
           <button class="filter-chip" type="button" data-filter="all" aria-label="Show all skills" aria-pressed="true">All</button>
@@ -1297,7 +1332,7 @@
           <button class="filter-chip" type="button" data-filter="launch" aria-label="Show Launch skills" aria-pressed="false">Launch</button>
           <button class="filter-chip" type="button" data-filter="qa" aria-label="Show QA skills" aria-pressed="false">QA</button>
         </div>
-        <p class="filter-summary" id="skill-filter-summary" aria-live="polite">Showing all 16 skills.</p>
+        <p class="filter-summary" id="skill-filter-summary" aria-live="polite">Showing all 18 skills.</p>
         <div class="skills-grid">
           <article class="skill-card" data-track="build" data-prompt="Use $web-build-coach to build a clear educational website and explain the important implementation decisions." tabindex="0" role="button" aria-label="Preview $web-build-coach prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4zM4 10h16" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
@@ -1369,6 +1404,16 @@
             <h3>$web-deployment-ops</h3>
             <p>Verify hosting, DNS, SSL, redirects, env config, cache, source maps, and rollback readiness.</p>
           </article>
+          <article class="skill-card" data-track="trust" data-prompt="Use $web-ai-integration to review AI key exposure, prompt injection, output handling, cost caps, and provider fallback before launch." tabindex="0" role="button" aria-label="Preview $web-ai-integration prompt">
+            <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a4 4 0 0 1 4 4v1a4 4 0 0 1 0 8v1a4 4 0 0 1-8 0v-1a4 4 0 0 1 0-8V7a4 4 0 0 1 4-4ZM9 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3>$web-ai-integration</h3>
+            <p>Harden AI features: key exposure, prompt injection, output handling, cost caps, and provider fallback.</p>
+          </article>
+          <article class="skill-card" data-track="launch" data-prompt="Use $web-data-resilience to check backups, tested restores, migration safety, deletion paths, and the recovery runbook." tabindex="0" role="button" aria-label="Preview $web-data-resilience prompt">
+            <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="6" rx="7" ry="3" stroke="currentColor" stroke-width="2"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+            <h3>$web-data-resilience</h3>
+            <p>Verify backups, tested restores, migration safety, deletion paths, and recovery runbooks.</p>
+          </article>
           <article class="skill-card" data-track="qa" data-prompt="Use $web-core-flow-testing to walk signup, login, forms, links, checkout, account, mobile, browser, 404, and error flows." tabindex="0" role="button" aria-label="Preview $web-core-flow-testing prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 7h12M6 12h8M6 17h5M17 15l2 2 3-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <h3>$web-core-flow-testing</h3>
@@ -1377,7 +1422,7 @@
           <article class="skill-card is-active" data-track="qa" data-prompt="Use $web-launch-qa to verify launch readiness across the full website or web app." tabindex="0" role="button" aria-label="Preview $web-launch-qa prompt">
             <span class="skill-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19h16M7 16l3-3 2 2 5-6M17 9h-4M17 9v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <h3>$web-launch-qa</h3>
-            <p>Orchestrate final PASS/FAIL/BLOCKED launch readiness across the full web surface.</p>
+            <p>Route every launch gate to its specialist skill and aggregate one PASS/FAIL/BLOCKED report.</p>
           </article>
         </div>
       </section>
@@ -1386,25 +1431,32 @@
         <div class="split-inner">
           <div class="install">
             <h2>Install</h2>
-            <p>Install as repo-scoped skills for one project, or as user skills when you want them across projects.</p>
+            <p>Runs in Codex and Claude Code off the same <code>skills/</code> directory. Install into one project, or globally for every project.</p>
             <div class="tabs" role="tablist" aria-label="Install method">
-              <button class="tab" type="button" role="tab" aria-selected="true" data-install="repo">Repo</button>
+              <button class="tab" type="button" role="tab" aria-selected="true" data-install="repo">Codex</button>
+              <button class="tab" type="button" role="tab" aria-selected="false" data-install="claude">Claude Code</button>
               <button class="tab" type="button" role="tab" aria-selected="false" data-install="user">User</button>
               <button class="tab" type="button" role="tab" aria-selected="false" data-install="clone">Clone</button>
             </div>
             <pre class="codebox"><code id="install-code">mkdir -p .agents/skills
 cp -R web-craft-skills/skills/* .agents/skills/</code><button class="copy-button" type="button" aria-label="Copy install command"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 8h11v13H8zM5 16H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button></pre>
-            <p>Restart Codex if newly copied skills do not appear. Invoke skills explicitly with the `$skill-name` syntax.</p>
+            <p>Restart the client if newly copied skills do not appear. Invoke one explicitly with <code>$skill-name</code>, or let the model route by matching the prompt.</p>
           </div>
           <div class="verify" id="verify">
-            <h2>Verify</h2>
-            <p>Before sharing the pack, confirm that structure, content, and rendering are clean.</p>
-            <ul class="checklist">
-              <li><span class="check-left"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 12 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> All 16 skills are listed</span><span class="ok">OK</span></li>
-              <li><span class="check-left"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 12 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Plugin manifest validates</span><span class="ok">OK</span></li>
-              <li><span class="check-left"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 12 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Private project terms are absent</span><span class="ok">OK</span></li>
-              <li><span class="check-left"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 12 3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Page renders on desktop and mobile</span><span class="ok">OK</span></li>
-            </ul>
+            <h2>What it catches</h2>
+            <p>Four gates ship deterministic scripts &mdash; Node builtins only, no dependencies to install. This is real output, not a mockup:</p>
+            <pre class="codebox is-sample"><code><span class="sample-cmd">$ node check-email-dns.mjs github.com</span>
+
+  SPF     10/10 DNS lookups
+    include:_spf.salesforce.com (subtree: 2)
+      exists:%{i}._spf.mta.salesforce.com
+    include:sendgrid.net (subtree: 2)
+      include:ab.sendgrid.net (subtree: 1)
+
+  <span class="sample-flag">[P1]</span> SPF is at the limit exactly (10/10)
+        Any provider that adds one include to
+        their own record silently breaks your SPF.</code></pre>
+            <p class="sample-note">SPF stops working past ten DNS lookups, and nothing tells you. Counting them means resolving every nested include recursively &mdash; which is why this is a script instead of a checklist item.</p>
           </div>
         </div>
       </section>
@@ -1412,7 +1464,7 @@ cp -R web-craft-skills/skills/* .agents/skills/</code><button class="copy-button
       <section class="section" id="usage">
         <div class="section-heading">
           <h2>Usage examples</h2>
-          <p>Use a skill explicitly when you want a specific workflow, or let Codex invoke a skill when the prompt matches its description.</p>
+          <p>Name a skill explicitly when you want a specific workflow, or let the model route to one when the prompt matches its description.</p>
         </div>
         <div class="usage-grid">
           <div class="prompt-card"><code>Use $web-launch-qa to verify this website before I publish it.</code></div>
@@ -1435,6 +1487,7 @@ cp -R web-craft-skills/skills/* .agents/skills/</code><button class="copy-button
     <script>
       const installCommands = {
         repo: 'mkdir -p .agents/skills\ncp -R web-craft-skills/skills/* .agents/skills/',
+        claude: 'mkdir -p .claude/skills\ncp -R web-craft-skills/skills/* .claude/skills/',
         user: 'mkdir -p "$HOME/.agents/skills"\ncp -R web-craft-skills/skills/* "$HOME/.agents/skills/"',
         clone: 'git clone https://github.com/ai-moto/web-craft-skills.git\ncd web-craft-skills'
       };

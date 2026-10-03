@@ -1,6 +1,6 @@
 ---
 name: web-build-coach
-description: Build educational, accurate websites and web apps while explaining the important decisions. Use for learning-focused web builds, tutorials, starter projects, refactors where the user wants to understand the code, and requests like "teach me", "explain how this website works", "build this and show me why", or "make this site accurate and easy to learn from".
+description: Build educational, accurate websites and web apps while explaining the important decisions. Use for learning-focused web builds, tutorials, starter projects, refactors where the user wants to understand the code, and requests like "teach me", "explain how this website works", "build this and show me why", or "make this site accurate and easy to learn from". Not for a build or redesign where the user wants the result rather than the reasoning (use $web-design-director), copy and claim review on an existing site (use $web-content-quality), or auditing finished work against one gate (use $web-accessibility-audit, $web-security-review, or $web-performance-audit as applicable, or $web-launch-qa to route several) — this skill fires on the intent to learn, not on the artifact.
 ---
 
 # Web Build Coach

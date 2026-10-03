@@ -1,6 +1,6 @@
 ---
 name: web-legal-compliance
-description: Review basic website and app legal, privacy, and trust readiness. Use for privacy policy, terms of service, cookie notices, tracking consent, merchant-of-record clarity, refunds, contact/legal links, data collection disclosures, accessibility statements, age or regulated-content disclaimers, public claims risk, and legal launch checklists. This is not legal advice.
+description: Review basic website and app legal, privacy, and trust readiness. Use for privacy policy, terms of service, cookie notices, tracking consent, merchant-of-record clarity, refunds, contact/legal links, data collection disclosures, accessibility statements, age or regulated-content disclaimers, public claims risk, and legal launch checklists. This is not legal advice. Not for implementing what a policy describes — refund and merchant-of-record mechanics belong to $web-payments-launch, consent enforcement in tag code to $web-analytics-observability, deletion that actually removes bytes to $web-data-resilience, unsubscribe links and headers to $web-email-launch, provider retention and training settings to $web-ai-integration, and the WCAG conformance behind an accessibility statement to $web-accessibility-audit — this gate owns what is published, disclosed, and decided by the owner.
 ---
 
 # Web Legal Compliance
@@ -36,4 +36,13 @@ This skill supports practical launch readiness and issue spotting. It is not leg
 
 ## Output
 
-Label each issue as launch blocker, first-week, or owner/legal-review item. Include the page, missing element, risk, and suggested next step.
+Label each issue `P0` (launch blocker), `P1` (first week), or `P2`/`P3` (backlog), and tag `OWNER` on anything needing a business or legal decision rather than a code change. Most findings in this skill are `OWNER`. Include the page, missing element, risk, and suggested next step.
+
+## Severity
+
+Report findings on this pack's shared scale so a launch report can aggregate
+them without translation: `P0` blocks launch, `P1` is first-week, `P2`/`P3` are
+backlog and polish. Gates are `PASS`, `FAIL`, `BLOCKED`, or `N/A` — `BLOCKED`
+means not tested and never rounds up to `PASS`. Tag `OWNER` on anything whose
+resolution is a human decision rather than a code change. Full contract:
+[`$web-launch-qa` reference/severity.md](../web-launch-qa/reference/severity.md).

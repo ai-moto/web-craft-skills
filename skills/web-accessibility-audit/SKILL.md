@@ -1,6 +1,6 @@
 ---
 name: web-accessibility-audit
-description: Audit and improve practical web accessibility for websites and apps. Use for keyboard navigation, focus states, screen reader semantics, headings, landmarks, labels, alt text, color contrast, reduced motion, forms, dialogs, menus, tables, error messages, touch targets, zoom, and WCAG-oriented launch review.
+description: Audit and improve practical web accessibility for websites and apps. Use for keyboard navigation, focus states, screen reader semantics, headings, landmarks, labels, alt text, color contrast, reduced motion, forms, dialogs, menus, tables, error messages, touch targets, zoom, and WCAG-oriented launch review. Not for visual taste, layout, or typography choices (use $web-design-director), building or tuning the animations whose reduced-motion behavior is checked here (use $web-motion-polish), rewriting label and error wording (use $web-content-quality), or drafting an accessibility statement and judging legal exposure (use $web-legal-compliance) — this gate owns the WCAG conformance verdict on the rendered UI, not how it looks or what it says.
 ---
 
 # Web Accessibility Audit
@@ -34,3 +34,12 @@ description: Audit and improve practical web accessibility for websites and apps
 ## Output
 
 Lead with blockers that prevent completing core tasks. Include the affected user, step, element, evidence, and minimal fix.
+
+## Severity
+
+Report findings on this pack's shared scale so a launch report can aggregate
+them without translation: `P0` blocks launch, `P1` is first-week, `P2`/`P3` are
+backlog and polish. Gates are `PASS`, `FAIL`, `BLOCKED`, or `N/A` — `BLOCKED`
+means not tested and never rounds up to `PASS`. Tag `OWNER` on anything whose
+resolution is a human decision rather than a code change. Full contract:
+[`$web-launch-qa` reference/severity.md](../web-launch-qa/reference/severity.md).
